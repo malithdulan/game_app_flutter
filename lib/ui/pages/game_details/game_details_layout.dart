@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_app/ui/pages/game_details/widgets/platform_section_widgets/game_details_platform_widget.dart';
 import 'package:game_app/ui/pages/game_details/widgets/title_section_widgets/game_details_title_widget.dart';
 import 'package:game_app/ui/pages/game_details/widgets/game_details_header_widget.dart';
 
@@ -16,6 +17,7 @@ class GameDetailsLayout extends StatelessWidget {
         children: [
           GameDetailsHeader(images: data?.shortScreenshots,),
           GameDetailsTitleTile(data: data,),
+          GameDetailsPlatformWidget(data: data?.platforms,),
         ],
       ),
     );
