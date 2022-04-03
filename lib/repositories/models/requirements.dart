@@ -9,6 +9,13 @@ class Requirements extends  Equatable{
     this.recommended,
   });
 
+  factory Requirements.fromJson(Map<String, dynamic>? json) {
+    return Requirements(
+      minimum: json?['minimum'] as String?,
+      recommended: json?['recommended'] as String?
+    );
+  }
+
   @override
   List<Object?> get props => [minimum, recommended];
 }

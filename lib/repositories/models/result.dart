@@ -94,8 +94,11 @@ class Result extends Equatable {
       reviewsCount: json?['reviews_count'] as int?,
       saturatedColor: json?['saturated_color'] as String?,
       dominantColor: json?['dominant_color'] as String?,
+      platforms: (json?['platforms'] as List<dynamic>?)
+          ?.map((e) => PlatformElement.fromJson(e as Map<String, dynamic>?))
+          .toList(),
       genres: (json?['genres'] as List<dynamic>?)
-          ?.map((e) => Genre.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Genre.fromJson(e as Map<String, dynamic>?))
           .toList(),
       clip: json?['clip'] as String?,
       tags: (json?['tags'] as List<dynamic>?)
