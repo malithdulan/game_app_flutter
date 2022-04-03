@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../helper/utils.dart';
+import '../../helper/utils.dart';
 
-class GameByCategoryTitle extends StatelessWidget {
-  const GameByCategoryTitle({
-    Key? key,
-    required this.name,
-  }) : super(key: key);
-
+class CardBottomTitle extends StatelessWidget {
   final String name;
+  final double width;
+  const CardBottomTitle({Key? key, required this.name, required this.width}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +13,7 @@ class GameByCategoryTitle extends StatelessWidget {
       padding: EdgeInsets.only(left: Utils.shared.percentW(1.5)),
       alignment: Alignment.centerLeft,
       height: Utils.shared.percentPH(5),
-      width: Utils.shared.percentW(44),
+      width: width,
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(5),

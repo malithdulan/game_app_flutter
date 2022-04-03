@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:game_app/ui/global_widgets/card_bottom_title.dart';
 
+import '../../../../../../helper/constants.dart';
 import '../../../../../../helper/utils.dart';
 
 import 'package:game_app/ui/global_widgets/error_item.dart';
 import 'package:game_app/ui/global_widgets/image_card.dart';
 import 'package:game_app/ui/global_widgets/loading_item.dart';
 import 'package:game_app/ui/pages/game_details/game_details_page.dart';
-import 'games_by_category_title.dart';
 
 import '../../../../../../repositories/models/result.dart';
-
-
 
 class GamesByCategoryItem extends StatelessWidget {
   final Result? data;
@@ -29,7 +28,7 @@ class GamesByCategoryItem extends StatelessWidget {
         onTap: () =>
             Navigator.pushNamed(context, GameDetailsPage.name, arguments: data),
         child: CachedNetworkImage(
-          imageUrl: data?.backgroundImage ?? "",
+          imageUrl: data?.backgroundImage ?? Constants.defaultUrl,
           imageBuilder: (context, imageProvider) => Stack(
             fit: StackFit.expand,
             children: [
@@ -41,8 +40,9 @@ class GamesByCategoryItem extends StatelessWidget {
               ),
               Positioned(
                 bottom: 0,
-                child: GameByCategoryTitle(
+                child: CardBottomTitle(
                   name: data?.name ?? "",
+                  width: Utils.shared.percentW(44),
                 ),
               ),
             ],

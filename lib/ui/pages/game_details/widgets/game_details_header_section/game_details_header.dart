@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:game_app/helper/constants.dart';
-import 'package:game_app/ui/global_widgets/carousel_image.dart';
+import 'package:game_app/ui/pages/game_details/widgets/game_details_header_section/game_details_header_image.dart';
 
 import '../../../../../helper/utils.dart';
 
@@ -18,9 +17,10 @@ class GameDetailsHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: Utils.shared.percentPH(30),
       width: double.infinity,
+      color: Colors.black54,
       child: Stack(
         fit: StackFit.expand,
         children: [
@@ -31,7 +31,7 @@ class GameDetailsHeader extends StatelessWidget {
             indicatorColor: Colors.deepOrange,
             children: (images
                     ?.map(
-                      (e) => CarouselImage(image: NetworkImage(e.image ?? "")),
+                      (e) => GameDetailsHeaderImage(imageUrl: e.image),
                     )
                     .toList()) ??
                 AssetImageUrls.gameSlider,

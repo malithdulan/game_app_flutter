@@ -31,3 +31,7 @@ class AssetImageUrls {
     const CarouselImage(image: AssetImage("assets/images/newdawn.jpg")),
   ];
 }
+
+class Constants {
+  static String defaultUrl = "https://media.rawg.io/media/games/26d/26d4437715bee60138dab4a7c8c59c92.jpg";
+}

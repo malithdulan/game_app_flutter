@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:game_app/helper/constants.dart';
 import 'package:game_app/ui/global_widgets/error_item.dart';
 import 'package:game_app/ui/global_widgets/loading_item.dart';
 
@@ -18,7 +19,7 @@ class CategoryItemImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl: image ?? "",
+      imageUrl: image ?? Constants.defaultUrl,
       imageBuilder: (context, imageProvider) => CategoryItemCircleCard(
         state: state,
         image: imageProvider,

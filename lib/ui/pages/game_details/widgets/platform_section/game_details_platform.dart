@@ -18,7 +18,7 @@ class GameDetailsPlatform extends StatelessWidget {
           style: TextStyle(
             fontFamily: 'Roboto',
             fontWeight: FontWeight.w700,
-            fontSize: 20,
+            fontSize: 18,
           ),
         ),
         GameDetailsPlatformGrid(data: data,),

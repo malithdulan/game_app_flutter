@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:intl/intl.dart';
+
 import '../../../../../helper/utils.dart';
 
 class GameDetailsDateTile extends StatelessWidget {
@@ -11,7 +13,7 @@ class GameDetailsDateTile extends StatelessWidget {
     return Row(
       children: [
         const Text(
-          "Released date:",
+          "Released:",
           style: TextStyle(
             fontFamily: "Roboto",
             fontWeight: FontWeight.w500,
@@ -22,7 +24,7 @@ class GameDetailsDateTile extends StatelessWidget {
           width: Utils.shared.percentW(2),
         ),
         Text(
-          date?.toString() ?? "",
+          (date != null) ? DateFormat("yyyy-MM-dd").format(date!) : "",
           style: const TextStyle(
             fontFamily: "Roboto",
             fontWeight: FontWeight.w700,
