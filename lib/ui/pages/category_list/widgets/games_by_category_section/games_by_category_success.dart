@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'package:game_app/helper/utils.dart';
-import 'package:game_app/ui/pages/category_list/widgets/games_by_category_section_widgets/games_by_category_grid.dart';
+
+import 'package:game_app/ui/pages/category_list/widgets/games_by_category_section/games_by_category_grid.dart';
 
 import '../../../../../repositories/models/result.dart';
 
-class GamesByCategorySuccessWidget extends StatelessWidget {
+class GamesByCategorySuccess extends StatelessWidget {
   final String? categoryName;
   final List<Result>? games;
 
-  const GamesByCategorySuccessWidget(
+  const GamesByCategorySuccess(
       {Key? key, required this.games, required this.categoryName})
       : super(key: key);
 

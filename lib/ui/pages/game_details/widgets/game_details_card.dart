@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../../helper/utils.dart';
 
-class GameDetailsCardWidget extends StatelessWidget {
+class GameDetailsCard extends StatelessWidget {
   final List<Widget> children;
   final bool marginTop;
-  const GameDetailsCardWidget(
+  const GameDetailsCard(
       {Key? key, required this.children, this.marginTop = true})
       : super(key: key);
 

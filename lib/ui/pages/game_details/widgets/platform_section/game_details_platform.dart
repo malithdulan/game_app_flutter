@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:game_app/repositories/models/platform_element.dart';
-import 'package:game_app/ui/pages/game_details/widgets/game_details_card_widget.dart';
-import 'package:game_app/ui/pages/game_details/widgets/platform_section_widgets/game_details_platfom_grid.dart';
 
-class GameDetailsPlatformWidget extends StatelessWidget {
+import 'package:game_app/repositories/models/platform_element.dart';
+import 'package:game_app/ui/pages/game_details/widgets/game_details_card.dart';
+import 'package:game_app/ui/pages/game_details/widgets/platform_section/game_details_platfom_grid.dart';
+
+class GameDetailsPlatform extends StatelessWidget {
   final List<PlatformElement>? data;
-  const GameDetailsPlatformWidget({Key? key, required this.data}) : super(key: key);
+  const GameDetailsPlatform({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GameDetailsCardWidget(
+    return GameDetailsCard(
       marginTop: false,
       children: [
         const Text(

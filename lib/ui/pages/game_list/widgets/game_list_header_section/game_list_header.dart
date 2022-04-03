@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:game_app/helper/constants.dart';
 
 import 'package:game_app/helper/utils.dart';
 import 'package:game_app/ui/global_widgets/glass_morphism.dart';
-import 'package:game_app/ui/pages/game_list/widgets/game_list_search_button.dart';
+
+import 'game_list_search_button.dart';
 
 class GameListHeader extends StatelessWidget {
   const GameListHeader({Key? key}) : super(key: key);
@@ -22,13 +24,7 @@ class GameListHeader extends StatelessWidget {
             isLoop: true,
             indicatorBackgroundColor: Colors.white,
             indicatorColor: Colors.deepOrange,
-            children: [
-              Utils.shared.sliderImage(const AssetImage('assets/images/farcry2.jpg')),
-              Utils.shared.sliderImage(const AssetImage('assets/images/farcry3.jpg')),
-              Utils.shared.sliderImage(const AssetImage('assets/images/farcry4.jpg')),
-              Utils.shared.sliderImage(const AssetImage('assets/images/farcry5.jpg')),
-
-            ],
+            children: AssetImageUrls.gameSlider,
           ),
           Positioned(
             right: Utils.shared.percentW(5),

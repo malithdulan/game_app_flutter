@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:game_app/helper/utils.dart';
 
-import 'package:game_app/ui/pages/category_list/widgets/category_section_widgets/category_item.dart';
+import 'package:game_app/ui/pages/category_list/widgets/category_section/category_item_section/category_item.dart';
 
 import '../../../../../repositories/models/genre.dart';
 
-class CategoriesSuccessWidget extends StatelessWidget {
+class CategoriesSuccess extends StatelessWidget {
   final List<Genre>? categories;
-  const CategoriesSuccessWidget({Key? key, required this.categories})
+  const CategoriesSuccess({Key? key, required this.categories})
       : super(key: key);
 
   @override

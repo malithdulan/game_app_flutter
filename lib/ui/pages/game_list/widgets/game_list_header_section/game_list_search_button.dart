@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../helper/utils.dart';
-import '../blocs/games_bloc/games_bloc.dart';
-import '../game_search_delegate.dart';
+import '../../../../../helper/utils.dart';
+import '../../blocs/games_bloc/games_bloc.dart';
+import '../../game_search_delegate.dart';
 
 class GameListSearchButton extends StatelessWidget {
   const GameListSearchButton({Key? key}) : super(key: key);

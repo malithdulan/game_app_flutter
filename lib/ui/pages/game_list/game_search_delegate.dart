@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:game_app/ui/pages/game_list/widgets/game_list_item.dart';
+
+import 'package:game_app/ui/pages/game_list/widgets/game_list_item_section/game_list_item.dart';
 
 import '../../../repositories/models/result.dart';
 

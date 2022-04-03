@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:game_app/helper/utils.dart';
+
+import 'package:game_app/ui/pages/game_details/widgets/platform_section/game_details_platform_item.dart';
+
 import 'package:game_app/repositories/models/platform_element.dart';
-import 'package:game_app/ui/pages/game_details/widgets/platform_section_widgets/game_details_platform_item.dart';
 
 class GameDetailsPlatformGrid extends StatelessWidget {
   final List<PlatformElement>? data;

@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+
 import 'package:game_app/helper/utils.dart';
-import 'package:game_app/ui/pages/game_details/widgets/game_details_card_widget.dart';
-import 'package:game_app/ui/pages/game_details/widgets/title_section_widgets/game_details_date_tile.dart';
-import 'package:game_app/ui/pages/game_details/widgets/title_section_widgets/game_details_genres_tile.dart';
+
+import '../../../../global_widgets/game_rating.dart';
+import 'package:game_app/ui/pages/game_details/widgets/game_details_card.dart';
+import 'package:game_app/ui/pages/game_details/widgets/title_section/game_details_date_tile.dart';
+import 'package:game_app/ui/pages/game_details/widgets/title_section/game_details_genres_tile.dart';
 
 import '../../../../../repositories/models/result.dart';
-import '../../../../global_widgets/game_rating.dart';
 
-class GameDetailsTitleTile extends StatelessWidget {
+class GameDetailsTitle extends StatelessWidget {
   final Result? data;
-  const GameDetailsTitleTile({Key? key, required this.data}) : super(key: key);
+  const GameDetailsTitle({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GameDetailsCardWidget(
+    return GameDetailsCard(
       children: [
         Text(
           data?.name ?? "Header title Header title",

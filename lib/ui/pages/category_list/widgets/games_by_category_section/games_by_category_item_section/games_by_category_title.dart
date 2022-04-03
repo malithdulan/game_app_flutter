@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../helper/utils.dart';
+import '../../../../../../helper/utils.dart';
 
 class GameByCategoryTitle extends StatelessWidget {
   const GameByCategoryTitle({

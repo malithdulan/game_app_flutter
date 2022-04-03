@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_app/ui/pages/game_list/blocs/games_bloc/games_bloc.dart';
 
-import 'package:game_app/ui/pages/game_list/widgets/game_list_item.dart';
+import 'package:game_app/ui/pages/game_list/widgets/game_list_item_section/game_list_item.dart';
 import 'package:game_app/ui/pages/game_list/widgets/game_list_progress_Indicator.dart';
 
 import '../../../../repositories/models/result.dart';
 
-class GameListSuccessWidget extends StatefulWidget {
+class GameListSuccess extends StatefulWidget {
   final List<Result>? games;
   final int? pageNo;
   final int? totalGames;
   final bool isPaginated;
-  const GameListSuccessWidget(
+  const GameListSuccess(
       {Key? key,
       required this.games,
       required this.pageNo,
@@ -22,10 +22,10 @@ class GameListSuccessWidget extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<GameListSuccessWidget> createState() => _GameListSuccessWidgetState();
+  State<GameListSuccess> createState() => _GameListSuccessState();
 }
 
-class _GameListSuccessWidgetState extends State<GameListSuccessWidget> {
+class _GameListSuccessState extends State<GameListSuccess> {
   final ScrollController scrollController = ScrollController();
   late bool isLoading;
   @override
@@ -36,7 +36,7 @@ class _GameListSuccessWidgetState extends State<GameListSuccessWidget> {
   }
 
   @override
-  void didUpdateWidget(covariant GameListSuccessWidget oldWidget) {
+  void didUpdateWidget(covariant GameListSuccess oldWidget) {
     isLoading = widget.isPaginated;
     super.didUpdateWidget(oldWidget);
   }

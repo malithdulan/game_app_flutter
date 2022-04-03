@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
+import '../../../../../../helper/utils.dart';
 import 'package:game_app/ui/pages/category_list/blocs/category_bloc/category_bloc.dart';
 import 'package:game_app/ui/pages/category_list/blocs/games_by_category_bloc/games_by_category_bloc.dart';
 
-import '../../../../../helper/utils.dart';
-import '../../../../../repositories/models/genre.dart';
+import 'package:game_app/ui/pages/category_list/widgets/category_section/category_item_section/category_item_image.dart';
+
+import '../../../../../../repositories/models/genre.dart';
 
 class CategoryItem extends StatelessWidget {
   final Genre? category;
@@ -37,28 +38,7 @@ class CategoryItem extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CachedNetworkImage(
-                imageUrl: category?.imageBackground ?? "",
-                imageBuilder: (context, imageProvider) =>
-                    Utils.shared.categoryItemCircle(
-                  state: state,
-                  image: imageProvider,
-                ),
-                placeholder: (context, url) => Utils.shared.categoryItemCircle(
-                  state: state,
-                  child: const Center(
-                    child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(),),
-                  ),
-                ),
-                errorWidget: (context, url, error) =>
-                    Utils.shared.categoryItemCircle(
-                  state: state,
-                  child: const Icon(
-                    Icons.error,
-                    color: Colors.deepOrangeAccent,
-                  ),
-                ),
-              ),
+              CategoryItemImage(state: state, image: category?.imageBackground),
               SizedBox(
                 height: Utils.shared.percentPH(1),
               ),

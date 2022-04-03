@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:game_app/ui/global_widgets/carousel_image.dart';
+
 class StatusCodes {
   // MARK: - Network status codes/error codes
   static const int errorCodeRequestTimeout = 408;
@@ -13,18 +16,18 @@ class StatusCodes {
 }
 
 class AssetImageUrls {
-  static List<String> categorySlider = [
-    "assets/images/bf2048.jpg"
-    "assets/images/gta.png"
-    "assets/images/c2.jpg"
-    "assets/images/cd1.jpg"
-    "assets/images/gd.jpg"
+  static List<Widget> categorySlider = [
+    const CarouselImage(image: AssetImage("assets/images/bf2048.jpg")),
+    const CarouselImage(image: AssetImage("assets/images/gta.png")),
+    const CarouselImage(image: AssetImage("assets/images/c2.jpg")),
+    const CarouselImage(image: AssetImage("assets/images/cd1.jpg")),
+    const CarouselImage(image: AssetImage("assets/images/gd.jpg")),
   ];
-  static List<String> gameSlider = [
-    "assets/images/farcry2.jpg"
-    "assets/images/farcry3.jpg"
-    "assets/images/farcry4.jpg"
-    "assets/images/farcry5.jpg"
-    "assets/images/newdawn.jpg"
+  static List<Widget> gameSlider = [
+    const CarouselImage(image: AssetImage("assets/images/farcry2.jpg")),
+    const CarouselImage(image: AssetImage("assets/images/farcry3.jpg")),
+    const CarouselImage(image: AssetImage("assets/images/farcry4.jpg")),
+    const CarouselImage(image: AssetImage("assets/images/farcry5.jpg")),
+    const CarouselImage(image: AssetImage("assets/images/newdawn.jpg")),
   ];
 }

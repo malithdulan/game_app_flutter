@@ -3,11 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:game_app/helper/utils.dart';
+
+import 'package:game_app/ui/global_widgets/error_item.dart';
+import 'package:game_app/ui/global_widgets/image_card.dart';
+import 'package:game_app/ui/global_widgets/loading_item.dart';
+
 import 'package:game_app/repositories/models/platform_element.dart';
 
 class GameDetailsPlatformItem extends StatelessWidget {
   final PlatformElement? data;
-  const GameDetailsPlatformItem({Key? key, required this.data}) : super(key: key);
+  const GameDetailsPlatformItem({Key? key, required this.data})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +25,21 @@ class GameDetailsPlatformItem extends StatelessWidget {
         imageBuilder: (context, imageProvider) => Stack(
           fit: StackFit.expand,
           children: [
-            Utils.shared.gamesImageCard(image: imageProvider),
+            ImageCard(
+              image: imageProvider,
+              radius: const BorderRadius.all(
+                Radius.circular(5),
+              ),
+            ),
           ],
         ),
-        placeholder: (context, url) => Utils.shared.gamesImageCard(
-          child: const Center(
-            child: CircularProgressIndicator(),
+        placeholder: (context, url) => const ImageCard(
+          child: Center(
+            child: LoadingItem(),
           ),
         ),
-        errorWidget: (context, url, error) => Utils.shared.gamesImageCard(
-          child: const Icon(
-            Icons.error,
-            color: Colors.deepOrangeAccent,
-          ),
+        errorWidget: (context, url, error) => const ImageCard(
+          child: ErrorItem(),
         ),
       ),
     );

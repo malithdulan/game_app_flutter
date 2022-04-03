@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:game_app/repositories/game_repository.dart';
 import 'package:game_app/ui/pages/category_list/blocs/category_bloc/category_bloc.dart';
 import 'package:game_app/ui/pages/category_list/blocs/games_by_category_bloc/games_by_category_bloc.dart';

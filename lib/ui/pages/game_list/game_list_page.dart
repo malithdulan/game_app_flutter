@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:game_app/repositories/game_repository.dart';
+import 'blocs/games_bloc/games_bloc.dart';
 
 import 'package:game_app/ui/pages/game_list/game_list_layout.dart';
-
-import 'blocs/games_bloc/games_bloc.dart';
 
 class GameListPage extends StatelessWidget {
   const GameListPage({Key? key}) : super(key: key);

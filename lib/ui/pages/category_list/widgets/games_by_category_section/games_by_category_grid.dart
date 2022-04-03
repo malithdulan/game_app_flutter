@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../helper/utils.dart';
+
+import 'games_by_category_item_section/games_by_category_item.dart';
+
 import '../../../../../repositories/models/result.dart';
-import 'games_by_category_item.dart';
 
 class GamesByCategoryGrid extends StatefulWidget {
   final List<Result>? games;
