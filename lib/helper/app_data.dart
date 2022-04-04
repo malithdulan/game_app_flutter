@@ -11,7 +11,7 @@ class AppData {
 
   late double dvh;//device height without statusBar height and bottom navigation panel height
   late double dvw;//device width
-  late double dvph;//device height without bottom navigation panel height (device partial height)
+  late double dvph;//device height without system bottom navigation panel height (device partial height)
 
 
   void setDeviceValues(BuildContext context) {

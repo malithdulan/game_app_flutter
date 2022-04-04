@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../helper/utils.dart';
+import '../../../../helper/utils.dart';
 
-import '../../../../global_widgets/glass_morphism.dart';
+import '../../../global_widgets/glass_morphism.dart';
 
 class GameDetailsBackButton extends StatelessWidget {
   const GameDetailsBackButton({Key? key}) : super(key: key);
