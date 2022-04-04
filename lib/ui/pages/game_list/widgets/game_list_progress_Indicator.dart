@@ -15,7 +15,13 @@ class GameListProgressIndicator extends StatelessWidget {
           selector: (state) => state.isPaginating,
           builder: (context, state) => Opacity(
             opacity: state ? 1.0 : 0.0,
-            child: const SizedBox(width: 20, height: 20,child: CircularProgressIndicator()),
+            child: const SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(
+                color: Colors.deepOrange,
+              ),
+            ),
           ),
         ),
       ),

@@ -11,7 +11,6 @@ class GameDetailsPlatform extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GameDetailsCard(
-      marginTop: false,
       children: [
         const Text(
           "Platforms",
