@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:game_app/helper/utils.dart';
 
 import 'package:game_app/ui/global_widgets/common_layout_card.dart';
-import '../../../../global_widgets/game_rating.dart';
+import 'package:game_app/ui/global_widgets/game_item_rating.dart';
 import 'package:game_app/ui/pages/game_details/widgets/title_section/game_details_date_tile.dart';
 import 'package:game_app/ui/pages/game_details/widgets/title_section/game_details_genres_tile.dart';
 
@@ -40,20 +40,7 @@ class GameDetailsTitle extends StatelessWidget {
                 child: GameDetailsDateTile(date: data?.released),
               )
             : const SizedBox(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GameRating(rating: data?.rating ?? 0.0),
-            Text(
-              "${data?.rating} / 5",
-              style: const TextStyle(
-                fontFamily: "Roboto",
-                fontWeight: FontWeight.w700,
-                fontSize: 14,
-              ),
-            ),
-          ],
-        )
+        GameItemRating(data: data),
       ],
     );
   }

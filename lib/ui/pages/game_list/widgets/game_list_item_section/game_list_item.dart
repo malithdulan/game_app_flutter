@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:game_app/helper/utils.dart';
 
-import 'package:game_app/ui/pages/game_details/widgets/game_details_genre_section/game_details_genre_item_section/game_details_genre_item_rating.dart';
+import 'package:game_app/ui/global_widgets/game_item_rating.dart';
 import 'package:game_app/ui/pages/game_list/widgets/game_list_item_section/game_list_item_image.dart';
 import '../../../game_details/game_details_page.dart';
 
@@ -22,7 +22,8 @@ class GameListItem extends StatelessWidget {
       width: double.infinity,
       height: Utils.shared.percentPH(12),
       child: GestureDetector(
-        onTap: () => Navigator.of(context).pushNamed(GameDetailsPage.name, arguments: data),
+        onTap: () => Navigator.of(context)
+            .pushNamed(GameDetailsPage.name, arguments: data),
         child: Row(
           children: [
             SizedBox(
@@ -60,7 +61,7 @@ class GameListItem extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    GameDetailsGenreItemRating(data: data),
+                    GameItemRating(data: data),
                   ],
                 ),
               ),
@@ -80,5 +81,3 @@ class GameListItem extends StatelessWidget {
     );
   }
 }
-
-

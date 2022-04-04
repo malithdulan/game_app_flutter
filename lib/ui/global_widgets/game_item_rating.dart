@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../helper/utils.dart';
 
-import '../../../../../global_widgets/game_rating.dart';
+import 'game_rating.dart';
 
 import '../../../../../../repositories/models/result.dart';
 
-class GameDetailsGenreItemRating extends StatelessWidget {
+class GameItemRating extends StatelessWidget {
   final Result? data;
-  const GameDetailsGenreItemRating({
+  const GameItemRating({
     Key? key,
     required this.data,
   }) : super(key: key);

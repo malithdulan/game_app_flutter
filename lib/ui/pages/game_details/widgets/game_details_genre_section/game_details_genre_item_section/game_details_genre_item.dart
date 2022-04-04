@@ -18,7 +18,8 @@ class GameDetailsGenreItem extends StatelessWidget {
           AspectRatio(
             aspectRatio: 1,
             child: GameDetailsGenreItemImage(imageUrl: data?.imageBackground),
-          )
+          ),
+
         ],
       ),
       decoration: const BoxDecoration(
