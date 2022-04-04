@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 
-import '../../../../../helper/constants.dart';
+import '../../../../../../helper/constants.dart';
 
-import 'package:game_app/ui/global_widgets/error_item.dart';
-import 'package:game_app/ui/global_widgets/image_card.dart';
-import 'package:game_app/ui/global_widgets/loading_item.dart';
+import '../../../../../global_widgets/error_item.dart';
+import '../../../../../global_widgets/image_card.dart';
+import '../../../../../global_widgets/loading_item.dart';
 
-class GameListItemImage extends StatelessWidget {
+class GameDetailsGenreItemImage extends StatelessWidget {
   final String? imageUrl;
-  const GameListItemImage({Key? key, required this.imageUrl}) : super(key: key);
+  const GameDetailsGenreItemImage({Key? key, required this.imageUrl}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class GameListItemImage extends StatelessWidget {
         image: imageProvider,
         radius: const BorderRadius.only(
           topLeft: Radius.circular(5),
-          bottomLeft: Radius.circular(5),
+          topRight: Radius.circular(5),
         ),
         shadow: false,
       ),

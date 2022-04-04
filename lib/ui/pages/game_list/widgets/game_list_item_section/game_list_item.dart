@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:game_app/helper/utils.dart';
 
-import 'package:game_app/ui/global_widgets/game_rating.dart';
+import 'package:game_app/ui/pages/game_details/widgets/game_details_genre_section/game_details_genre_item_section/game_details_genre_item_rating.dart';
 import 'package:game_app/ui/pages/game_list/widgets/game_list_item_section/game_list_item_image.dart';
 import '../../../game_details/game_details_page.dart';
 
@@ -45,27 +45,22 @@ class GameListItem extends StatelessWidget {
                       style: const TextStyle(
                         fontFamily: "Roboto",
                         fontWeight: FontWeight.w700,
-                        fontSize: 17,
+                        fontSize: 16,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    Row(
-                      children: [
-                        GameRating(rating: data?.rating ?? 0.0),
-                        Padding(
-                          padding: EdgeInsets.only(left: Utils.shared.percentW(2)),
-                          child: Text(
-                            (data?.rating ?? 0.0).toString(),
-                            style: const TextStyle(
-                              fontFamily: "Roboto",
-                              fontWeight: FontWeight.w700,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
-                      ],
+                    Text(
+                      data?.genres?.first.name ?? "",
+                      style: const TextStyle(
+                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
+                    GameDetailsGenreItemRating(data: data),
                   ],
                 ),
               ),
@@ -85,3 +80,5 @@ class GameListItem extends StatelessWidget {
     );
   }
 }
+
+

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../../../../helper/utils.dart';
+import '../../helper/utils.dart';
 
-class GameDetailsCard extends StatelessWidget {
+class CommonLayoutCard extends StatelessWidget {
   final List<Widget> children;
-  final bool marginTop;
-  const GameDetailsCard(
-      {Key? key, required this.children, this.marginTop = true})
+  final bool isLastItem;
+  const CommonLayoutCard(
+      {Key? key, required this.children, this.isLastItem = false})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.only(
-        top: marginTop ? Utils.shared.percentW(3) : 0.0,
-        bottom: Utils.shared.percentW(3),
+        top: Utils.shared.percentW(3),
+        bottom: isLastItem ? Utils.shared.percentW(3) : Utils.shared.percentW(1),
         left: Utils.shared.percentW(3),
         right: Utils.shared.percentW(3),
       ),

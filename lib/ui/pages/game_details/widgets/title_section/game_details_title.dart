@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:game_app/helper/utils.dart';
 
+import 'package:game_app/ui/global_widgets/common_layout_card.dart';
 import '../../../../global_widgets/game_rating.dart';
-import 'package:game_app/ui/pages/game_details/widgets/game_details_card.dart';
 import 'package:game_app/ui/pages/game_details/widgets/title_section/game_details_date_tile.dart';
 import 'package:game_app/ui/pages/game_details/widgets/title_section/game_details_genres_tile.dart';
 
@@ -15,7 +15,7 @@ class GameDetailsTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameDetailsCard(
+    return CommonLayoutCard(
       children: [
         Text(
           data?.name ?? "Header title Header title",
@@ -44,12 +44,12 @@ class GameDetailsTitle extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GameRating(rating: data?.rating ?? 0.0),
-            const Text(
-              "4.2",
-              style: TextStyle(
+            Text(
+              "${data?.rating} / 5",
+              style: const TextStyle(
                 fontFamily: "Roboto",
                 fontWeight: FontWeight.w700,
-                fontSize: 16,
+                fontSize: 14,
               ),
             ),
           ],
