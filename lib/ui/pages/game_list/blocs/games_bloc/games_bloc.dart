@@ -10,7 +10,7 @@ part 'games_state.dart';
 
 class GamesBloc extends Bloc<GamesEvent, GamesState> {
   final GameRepository repository;
-
+  Game? _gameList;
   GamesBloc({required this.repository}) : super(const GamesState()) {
     on<GetGames>(_mapGetGamesEventToState);
   }
@@ -22,18 +22,17 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
         : emit(state.copyWith(isPaginating: event.isPaginating));//pagination loading
     try {
       final games = await repository.getGames(event.pageNo);
-      Game? gameList;
+
       if (state.data != null) {
-        gameList = state.data;
-        gameList?.results
+        _gameList?.results
             .addAll(games.results); //add newly fetched data to the list
       } else {
-        gameList = games;
+        _gameList = games;
       }
 
       emit(state.copyWith(
           status: LOADING_STATUS.success,
-          data: gameList,
+          data: _gameList,
           pageNo: event.pageNo,
           isPaginating: false));
     } catch (error, stackTrace) {

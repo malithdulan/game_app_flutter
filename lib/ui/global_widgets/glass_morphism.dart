@@ -8,12 +8,14 @@ class GlassMorphism extends StatelessWidget {
   final double radius;
   final double width;
   final double height;
+  final Color color;
   final Widget child;
   const GlassMorphism({
     Key? key,
     required this.blur,
     required this.opacity,
     required this.radius,
+    this.color = Colors.white,
     required this.child,
     required this.width,
     required this.height,
@@ -32,13 +34,13 @@ class GlassMorphism extends StatelessWidget {
           width: width,
           height: height,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(opacity),
+            color: color.withOpacity(opacity),
             borderRadius: BorderRadius.all(
               Radius.circular(radius),
             ),
             border: Border.all(
               width: 1.5,
-              color: Colors.white.withOpacity(0.2),
+              color: color.withOpacity(0.2),
             ),
           ),
           child: child,
