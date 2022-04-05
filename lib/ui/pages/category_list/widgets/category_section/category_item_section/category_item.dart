@@ -34,7 +34,7 @@ class CategoryItem extends StatelessWidget {
                 ? true
                 : false,
         builder: (context, state) => GestureDetector(
-          onTap: () => (!state) ? _selectCategory(context) : () {},
+          onTap: () => (!state) ? _selectCategory(context) : () {},//set selected item avoid trigger events
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

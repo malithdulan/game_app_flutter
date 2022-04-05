@@ -13,21 +13,17 @@ class CategoriesSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: Utils.shared.percentPH(19),
-      child: GridView.builder(
-        itemBuilder: (context, index) => CategoryItem(
-          key: ValueKey("${categories?[index].name}$index"),
-          category: categories?[index],
-        ),
-        itemCount: categories?.length,
-        scrollDirection: Axis.horizontal,
-        //physics: const BouncingScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 1,
-          mainAxisExtent: Utils.shared.percentW(25),
-        ),
+    return GridView.builder(
+      itemBuilder: (context, index) => CategoryItem(
+        key: ValueKey("${categories?[index].name}$index"),
+        category: categories?[index],
+      ),
+      itemCount: categories?.length,
+      scrollDirection: Axis.horizontal,
+      //physics: const BouncingScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 1,
+        mainAxisExtent: Utils.shared.percentW(25),
       ),
     );
   }

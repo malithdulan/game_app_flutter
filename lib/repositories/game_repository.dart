@@ -1,4 +1,6 @@
 import 'package:game_app/helper/network/network.dart';
+import 'package:game_app/helper/network/network_get_methods.dart';
+
 import 'package:game_app/repositories/models/game.dart';
 import 'package:game_app/repositories/models/genre.dart';
 import 'package:game_app/repositories/models/result.dart';

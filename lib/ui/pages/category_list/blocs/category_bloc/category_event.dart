@@ -14,3 +14,5 @@ class SelectCategory extends CategoryEvent {
   @override
   List<Object?> get props => [selectedId];
 }
+
+class ShowReloadCategory extends CategoryEvent {}

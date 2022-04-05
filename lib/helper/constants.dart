@@ -34,4 +34,13 @@ class AssetImageUrls {
 
 class Constants {
   static String defaultUrl = "https://media.rawg.io/media/games/26d/26d4437715bee60138dab4a7c8c59c92.jpg";
+
+  //error messages
+  static String internetErrorMessage = "Ops! no internet connection.";
+  static String internetCheckErrorMessage = "Ops! something went wrong with internet check.";
+  static String networkErrorMessage = "Ops! something went wrong";
+  static String clientErrorMessage = "Ops! error in client side";
+  static String unauthorizedAccessErrorMessage = "Ops! unauthorized access";
+  static String contentNotFoundErrorMessage = "Ops! content not found";
+  static String serverErrorMessage = "Ops! error in server side";
 }

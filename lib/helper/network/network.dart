@@ -1,10 +1,12 @@
 import 'dart:convert';
 
-import 'package:game_app/helper/network/network_config.dart';
+import 'package:game_app/helper/error.dart';
+import 'package:game_app/helper/managers/connectivity_manager.dart';
 import 'package:http/http.dart' as http_client;
 // ignore: implementation_imports
 import 'package:http/src/response.dart';
 
+import '../constants.dart';
 import '../enums.dart';
 import '../log.dart';
 import '../utils.dart';
@@ -21,7 +23,7 @@ class Net {
   ///reusable network service method, use this method with combination with extension methods in this class.
   ///
   ///for post, put, patch make sure to put paramData and contentType
-  Future<Map<String, dynamic>> _performWebServiceRequest<T>({
+  Future<Map<String, dynamic>> performWebServiceRequest<T>({
     required Uri uri,
     CONTENT_TYPE contentType = CONTENT_TYPE.jsonEncoded,
     required NETWORK_REQUEST_TYPE requestType,
@@ -34,6 +36,15 @@ class Net {
       _encoding = Encoding.getByName('utf-8');
     }
 
+    //check intent connection
+    bool internetStatus = await ConnectivityManager.shared.checkInternet();
+    if (!internetStatus) {//no internet
+      throw NoInternetException(Constants.internetErrorMessage);
+    }
+
+    //jwt token expire validation code
+
+    //log message to terminal if enabled
     if (isLogEnable) Log.shared.logInfo(message: "${requestType.name} request sent");
 
     try {
@@ -70,8 +81,11 @@ class Net {
 
           break;
       }
-
+      //log message to terminal if enabled
       if (isLogEnable) Utils.shared.displayResponseData(response.statusCode, response.body);
+
+      //throw client side, server side, 404 not found network errors
+      _handleNetworkErrors(response.statusCode);
 
       return _getResponseData(response.body,
           response.statusCode); //return response body and status code
@@ -82,7 +96,20 @@ class Net {
           className: "Network - _performWebServiceRequest()",
           error: error.toString(),
           stackTrace: stackTrace);
-      throw Exception(error);
+      throw NetworkException(Constants.networkErrorMessage);
+    }
+  }
+
+  //handle network errors, put all the network related exceptions in here
+  void _handleNetworkErrors(int statusCode) {
+    if (statusCode == 401) {
+      throw NetworkException(Constants.unauthorizedAccessErrorMessage);
+    }else if (statusCode == 404) {
+      throw NetworkException(Constants.contentNotFoundErrorMessage);
+    } else if (statusCode.clamp(400, 499) == statusCode) {
+      throw NetworkException(Constants.clientErrorMessage);
+    } else if (statusCode.clamp(500, 599) == statusCode) {
+      throw NetworkException(Constants.serverErrorMessage);
     }
   }
 
@@ -93,38 +120,8 @@ class Net {
     };
   }
 
-  Map<String, String> _commonHeaders() {
+  Map<String, String> commonHeaders() {
     return {"Content-Type": "application/json"};
   }
 }
 
-extension NetworkMethods on Net {
-  Future<dynamic> getGames(int pageNo) {
-    Map<String, String> query = {"page_size" : "10", "page" : "$pageNo"};
-    return _performWebServiceRequest(
-      uri: NetConfig.getUri(
-        path: NetConfig.getGames,
-        queryParameters: query,
-      ),
-      requestType: NETWORK_REQUEST_TYPE.get,
-      headers: _commonHeaders(),
-    );
-  }
-
-  Future<dynamic> getGenres() {
-    return _performWebServiceRequest(
-      uri: NetConfig.getUri(path: NetConfig.getGenres),
-      requestType: NETWORK_REQUEST_TYPE.get,
-      headers: _commonHeaders(),
-    );
-  }
-
-  Future<dynamic> getGamesByCategory(int? genreId) {
-    Map<String, String> query = {"genres": "$genreId", "page_size": "100"};
-    return _performWebServiceRequest(
-      uri: NetConfig.getUri(path: NetConfig.getGames, queryParameters: query),
-      requestType: NETWORK_REQUEST_TYPE.get,
-      headers: _commonHeaders(),
-    );
-  }
-}

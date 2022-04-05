@@ -16,14 +16,24 @@ class CategorySelectState extends CategoryState {
 class CategoryDataState extends CategoryState {
   final List<Genre>? data;
   final LOADING_STATUS status;
+  final String? errorMessage;
 
   CategoryDataState({
     this.status = LOADING_STATUS.initial,
     this.data,
+    this.errorMessage,
   });
 
+  CategoryDataState copyWith({List<Genre>? data, LOADING_STATUS? status, String? errorMessage}) {
+    return CategoryDataState(
+      data: data ?? this.data,
+      status: status ?? this.status,
+      errorMessage: errorMessage ?? this.errorMessage
+    );
+  }
+
   @override
-  List<Object?> get props => [status, data];
+  List<Object?> get props => [status, data, errorMessage];
 }
 
 
