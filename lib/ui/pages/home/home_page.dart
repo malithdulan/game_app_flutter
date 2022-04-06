@@ -5,9 +5,20 @@ import 'package:game_app/ui/pages/game_list/game_list_page.dart';
 
 import '../game_details/game_details_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   static const String name = "/homePage";
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int currentIndex = 0;
+
+  final GlobalKey<NavigatorState> firstTabNavKey = GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> secondTabNavKey = GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> thirdTabNavKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +39,28 @@ class HomePage extends StatelessWidget {
             label: "User",
           ),
         ],
+        onTap: (index) {
+          if (currentIndex == index) {
+            switch (index) {
+              case 0:
+                firstTabNavKey.currentState?.popUntil((route) => route.isFirst);
+                break;
+              case 1:
+                secondTabNavKey.currentState?.popUntil((route) => route.isFirst);
+                break;
+              case 2:
+                thirdTabNavKey.currentState?.popUntil((route) => route.isFirst);
+                break;
+            }
+          }
+          currentIndex = index;
+        },
       ),
       tabBuilder: (context, index) {
         switch (index) {
           case 0:
             return CupertinoTabView(
+              navigatorKey: firstTabNavKey,
               routes: {
                 GameDetailsPage.name: (context) => const GameDetailsPage(),
               },
@@ -42,6 +70,7 @@ class HomePage extends StatelessWidget {
             );
           case 1:
             return CupertinoTabView(
+              navigatorKey: secondTabNavKey,
               routes: {
                 GameDetailsPage.name: (context) => const GameDetailsPage(),
               },
@@ -51,6 +80,7 @@ class HomePage extends StatelessWidget {
             );
           default:
             return CupertinoTabView(
+              navigatorKey: thirdTabNavKey,
               builder: (context) => const CupertinoPageScaffold(
                 child: GameDetailsPage(),
               ),

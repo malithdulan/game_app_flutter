@@ -14,7 +14,9 @@ class Category extends StatelessWidget {
   const Category({Key? key}) : super(key: key);
 
   void _getCategories(BuildContext context) {
-    context.read<CategoryBloc>().add(ShowReloadCategory());//show reloading after reload button press
+    context
+        .read<CategoryBloc>()
+        .add(ShowReloadCategory()); //show reloading after reload button press
     Future.delayed(
       //a delay to show it's working, avoiding the user confusion of pressing the reload button
       const Duration(seconds: 1),
@@ -25,7 +27,6 @@ class Category extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
       height: Utils.shared.percentPH(19),
       child: BlocBuilder<CategoryBloc, CategoryState>(
           buildWhen: (previous, current) => (current is CategoryDataState),

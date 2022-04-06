@@ -11,10 +11,10 @@ class GameListProgressIndicator extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Center(
-        child: BlocSelector<GamesBloc, GamesState, bool>(
-          selector: (state) => state.isPaginating,
+        child: BlocBuilder<GamesBloc, GamesState>(
+          buildWhen: (previous, current) => current.isPaginating != previous.isPaginating,
           builder: (context, state) => Opacity(
-            opacity: state ? 1.0 : 0.0,
+            opacity: state.isPaginating ? 1.0 : 0.0,
             child: const SizedBox(
               width: 20,
               height: 20,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_app/helper/constants.dart';
 import 'package:game_app/helper/utils.dart';
 
 class ErrorPlaceholder extends StatelessWidget {
@@ -15,6 +16,18 @@ class ErrorPlaceholder extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          if (showImage)
+            Padding(
+              padding: EdgeInsets.only(bottom: Utils.shared.percentPH(1.5)),
+              child: LayoutBuilder(
+                builder: (context, constraints) => Image.asset(
+                  AssetImageUrls.errorWidgetImage,
+                  fit: BoxFit.cover,
+                  width: constraints.maxWidth * (50 / 100),
+                  height: constraints.maxWidth * (25 / 100),
+                ),
+              ),
+            ),
           Text(
             message ?? "",
             style: const TextStyle(

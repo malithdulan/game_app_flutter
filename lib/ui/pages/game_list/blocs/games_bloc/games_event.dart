@@ -14,3 +14,5 @@ class GetGames extends GamesEvent {
   @override
   List<Object?> get props => [pageNo, isPaginating];
 }
+
+class ShowReloadGames extends GamesEvent {}

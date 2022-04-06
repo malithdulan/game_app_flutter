@@ -16,35 +16,32 @@ class GamesByCategorySuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: Utils.shared.percentPH(24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(left: Utils.shared.percentW(3)),
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(
-                  categoryName ?? "",
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontFamily: "Roboto",
-                    fontWeight: FontWeight.w700,
-                  ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.only(left: Utils.shared.percentW(3)),
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                categoryName ?? "",
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontFamily: "Roboto",
+                  fontWeight: FontWeight.w700,
                 ),
               ),
             ),
           ),
-          SizedBox(
-            width: double.infinity,
-            height: Utils.shared.percentPH(20),
-            child: GamesByCategoryGrid(games: games),
-          ),
-        ],
-      ),
+        ),
+        SizedBox(
+          width: double.infinity,
+          height: Utils.shared.percentPH(20),
+          child: GamesByCategoryGrid(games: games),
+        ),
+      ],
     );
   }
 }

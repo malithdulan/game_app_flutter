@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:game_app/helper/utils.dart';
 
 import 'package:game_app/ui/global_widgets/game_item_rating.dart';
-import 'package:game_app/ui/pages/game_list/widgets/game_list_item_section/game_list_item_image.dart';
-import '../../../game_details/game_details_page.dart';
 
-import '../../../../../repositories/models/result.dart';
+import '../../../../../../repositories/models/result.dart';
+import '../../../../game_details/game_details_page.dart';
+import 'game_list_item_image.dart';
+
 
 class GameListItem extends StatelessWidget {
   final Result? data;

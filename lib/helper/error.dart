@@ -3,11 +3,6 @@ class NoInternetException implements Exception {
   NoInternetException(this.error);
 }
 
-class InternetCheckException implements Exception {
-  final String error;
-  InternetCheckException(this.error);
-}
-
 class NetworkException implements Exception {
   final String error;
   NetworkException(this.error);

@@ -13,3 +13,5 @@ class GetGamesByCategory extends GamesByCategoryEvent {
   @override
   List<Object?> get props => [selectedId, categoryName];
 }
+
+class ShowReloadGamesByCategory extends GamesByCategoryEvent {}

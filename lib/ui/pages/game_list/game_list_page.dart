@@ -18,7 +18,7 @@ class GameListPage extends StatelessWidget {
         child: BlocProvider<GamesBloc>(
           create: (context) => GamesBloc(
             repository: context.read<GameRepository>(),
-          )..add(GetGames(pageNo: 1)),
+          )..add(GetGames(pageNo: 1, isPaginating: false)),
           child: const GameListLayout(),
         ),
       ),

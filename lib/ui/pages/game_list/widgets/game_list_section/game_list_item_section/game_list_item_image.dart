@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 
-import '../../../../../helper/constants.dart';
-
 import 'package:game_app/ui/global_widgets/error_item.dart';
 import 'package:game_app/ui/global_widgets/image_card.dart';
 import 'package:game_app/ui/global_widgets/loading_item.dart';
+
+import '../../../../../../helper/constants.dart';
 
 class GameListItemImage extends StatelessWidget {
   final String? imageUrl;

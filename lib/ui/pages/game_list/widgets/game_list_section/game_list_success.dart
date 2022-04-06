@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_app/ui/pages/game_list/blocs/games_bloc/games_bloc.dart';
 
-import 'package:game_app/ui/pages/game_list/widgets/game_list_item_section/game_list_item.dart';
-import 'package:game_app/ui/pages/game_list/widgets/game_list_progress_Indicator.dart';
+import 'package:game_app/ui/pages/game_list/widgets/game_list_section/game_list_item_section/game_list_item.dart';
 
-import '../../../../repositories/models/result.dart';
+import '../../../../../repositories/models/result.dart';
+import 'game_list_paginate_Indicator.dart';
 
 class GameListSuccess extends StatefulWidget {
   final List<Result>? games;
@@ -55,24 +55,22 @@ class _GameListSuccessState extends State<GameListSuccess> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: MediaQuery.removePadding(
-        removeTop: false,
-        context: context,
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            if (index == widget.games?.length) {
-              return const GameListProgressIndicator();
-            } else {
-              return GameListItem(
-                key: ValueKey("${widget.games?[index].name}GameList"),
-                data: widget.games?[index],
-              );
-            }
-          },
-          itemCount: (widget.games != null) ? (widget.games!.length + 1) : null,
-          controller: scrollController,
-        ),
+    return MediaQuery.removePadding(
+      removeTop: false,//set to true if you want to remove default top padding of listview
+      context: context,
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          if (index == widget.games?.length) {
+            return const GameListProgressIndicator();
+          } else {
+            return GameListItem(
+              key: ValueKey("${widget.games?[index].name}GameList"),
+              data: widget.games?[index],
+            );
+          }
+        },
+        itemCount: (widget.games != null) ? (widget.games!.length + 1) : null,
+        controller: scrollController,
       ),
     );
   }

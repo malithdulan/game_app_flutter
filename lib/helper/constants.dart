@@ -30,6 +30,8 @@ class AssetImageUrls {
     const CarouselImage(image: AssetImage("assets/images/farcry5.jpg")),
     const CarouselImage(image: AssetImage("assets/images/newdawn.jpg")),
   ];
+
+  static String errorWidgetImage = "assets/images/office.jpg";
 }
 
 class Constants {

@@ -1,8 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_app/helper/enums.dart';
+import 'package:game_app/helper/extensions.dart';
 import 'package:game_app/repositories/game_repository.dart';
 
+import '../../../../../helper/error.dart';
 import '../../../../../repositories/models/game.dart';
 
 part 'games_event.dart';
@@ -13,13 +15,21 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
   Game? _gameList;
   GamesBloc({required this.repository}) : super(const GamesState()) {
     on<GetGames>(_mapGetGamesEventToState);
+    on<ShowReloadGames>(_mapShowReloadGamesToState);
   }
 
   void _mapGetGamesEventToState(
       GetGames event, Emitter<GamesState> emit) async {
-    (!event.isPaginating)
-        ? emit(state.copyWith(status: LOADING_STATUS.loading))//initial get data loading
-        : emit(state.copyWith(isPaginating: event.isPaginating));//pagination loading
+
+    if (!event.isPaginating) {//not pagination loading
+      if (!state.status.isLoading) {//avoid trigger loading again if previous state is loading (triggered by reload button)
+        //initial get data loading
+        emit(state.copyWith(status: LOADING_STATUS.loading, isPaginating: false));
+      }
+    } else {//pagination loading
+      emit(state.copyWith(isPaginating: event.isPaginating));
+    }
+
     try {
       final games = await repository.getGames(event.pageNo);
 
@@ -35,8 +45,14 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
           data: _gameList,
           pageNo: event.pageNo,
           isPaginating: false));
-    } catch (error, stackTrace) {
-      emit(state.copyWith(status: LOADING_STATUS.error));
+    } on NoInternetException catch (e) {
+      emit(state.copyWith(status: LOADING_STATUS.error, errorMessage: e.error, isPaginating: false));
+    } on NetworkException catch (e) {
+      emit(state.copyWith(status: LOADING_STATUS.error, errorMessage: e.error, isPaginating: false));
     }
+  }
+
+  void _mapShowReloadGamesToState(ShowReloadGames event, Emitter<GamesState> emit) {
+    emit(state.copyWith(status: LOADING_STATUS.loading, isPaginating: false));
   }
 }

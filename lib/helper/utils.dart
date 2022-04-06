@@ -68,7 +68,7 @@ class Utils {
   MaterialPageRoute? onGenerateRoute(RouteSettings settings) {
     return MaterialPageRoute(
       builder: (context) {
-        AppData.shared.setDeviceValues(context);
+        AppData.shared.setDeviceValues(context);//set important app data
         return const HomePage(); //home page (tab bar page)
       },
       settings: settings,
