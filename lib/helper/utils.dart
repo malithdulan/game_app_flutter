@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:game_app/helper/app_data.dart';
@@ -85,6 +87,10 @@ class Utils {
     return AppData.shared.dvw * (value / 100);
   }
 
+
+  executeWithDelay({required FutureOr  Function() callBack}) {
+    Future.delayed(const Duration(seconds: 1), callBack);
+  }
 
 }
 

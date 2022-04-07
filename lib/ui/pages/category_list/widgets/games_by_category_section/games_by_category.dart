@@ -17,13 +17,13 @@ class GamesByCategory extends StatelessWidget {
   void _getGamesByCategory(BuildContext context, int? id, String? name) {
     context.read<GamesByCategoryBloc>().add(
         ShowReloadGamesByCategory()); //show reloading after reload button press
-    Future.delayed(
-      //a delay to show it's working, avoiding the user confusion of pressing the reload button
-      const Duration(seconds: 1),
-      () => context.read<GamesByCategoryBloc>().add(GetGamesByCategory(
-            selectedId: id,
-            categoryName: name,
-          )),
+    //a delay to show it's working, avoiding the user confusion of pressing the reload button
+    Utils.shared.executeWithDelay(
+      callBack: () =>
+          context.read<GamesByCategoryBloc>().add(GetGamesByCategory(
+                selectedId: id,
+                categoryName: name,
+              )),
     );
   }
 

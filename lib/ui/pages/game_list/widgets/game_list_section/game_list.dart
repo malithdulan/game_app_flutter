@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:game_app/helper/utils.dart';
 
 import '../../../../../helper/enums.dart';
 import '../../../../global_widgets/error_placeholder.dart';
@@ -15,10 +16,9 @@ class GameList extends StatelessWidget {
     context
         .read<GamesBloc>()
         .add(ShowReloadGames()); //show reloading after reload button press
-    Future.delayed(
-      //a delay to show it's working, avoiding the user confusion of pressing the reload button
-      const Duration(seconds: 1),
-      () => context
+    //a delay to show it's working, avoiding the user confusion of pressing the reload button
+    Utils.shared.executeWithDelay(
+      callBack: () => context
           .read<GamesBloc>()
           .add(GetGames(pageNo: 1, isPaginating: false)),
     );

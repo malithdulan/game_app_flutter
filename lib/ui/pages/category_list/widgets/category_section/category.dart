@@ -17,11 +17,8 @@ class Category extends StatelessWidget {
     context
         .read<CategoryBloc>()
         .add(ShowReloadCategory()); //show reloading after reload button press
-    Future.delayed(
-      //a delay to show it's working, avoiding the user confusion of pressing the reload button
-      const Duration(seconds: 1),
-      () => context.read<CategoryBloc>().add(GetCategories()),
-    );
+    //a delay to show it's working, avoiding the user confusion of pressing the reload button
+    Utils.shared.executeWithDelay(callBack: () => context.read<CategoryBloc>().add(GetCategories()));
   }
 
   @override
