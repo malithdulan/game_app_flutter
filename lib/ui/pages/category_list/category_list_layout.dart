@@ -9,13 +9,16 @@ class CategoryListLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
-        CategoryHeader(),
-        Category(),
-        GamesByCategory(),
-      ],
-    );
+    return (MediaQuery.of(context).size.height !=
+            0) //mediaQuery returns 0 values in first build loop in release
+        ? Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: const [
+              CategoryHeader(),
+              Category(),
+              GamesByCategory(),
+            ],
+          )
+        : const SizedBox();
   }
 }
