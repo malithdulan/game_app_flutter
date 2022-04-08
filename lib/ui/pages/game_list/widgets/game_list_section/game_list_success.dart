@@ -66,7 +66,8 @@ class _GameListSuccessState extends State<GameListSuccess> {
       child: ListView.builder(
         itemBuilder: (context, index) {
           if (paginateExpression && index == widget.games?.length) {
-            return const GameListProgressIndicator();
+            //don't show if last element of paginated list
+            return const GameListPaginateIndicator();
           } else {
             return GameListItem(
               key: ValueKey("${widget.games?[index].name}GameList"),
@@ -75,7 +76,7 @@ class _GameListSuccessState extends State<GameListSuccess> {
           }
         },
         itemCount: (widget.games != null)
-            ? ((paginateExpression)
+            ? ((paginateExpression) //don't add 1 if last element of paginated list
                 ? (widget.games!.length + 1)
                 : (widget.games!.length))
             : null,

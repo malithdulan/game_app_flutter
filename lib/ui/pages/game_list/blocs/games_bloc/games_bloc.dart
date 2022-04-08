@@ -20,14 +20,19 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
 
   void _mapGetGamesEventToState(
       GetGames event, Emitter<GamesState> emit) async {
-
-    if (!event.isPaginating) {//not pagination loading
-      if (!state.status.isLoading) {//avoid trigger loading again if previous state is loading (triggered by reload button)
+    if (!event.isPaginating) {
+      //initial data loading
+      if (!state.status.isLoading) {
+        //avoid trigger loading again if previous state is loading (triggered by reload button)
         //initial get data loading
-        emit(state.copyWith(status: LOADING_STATUS.loading, isPaginating: false));
+        emit(state.copyWith(
+            status: LOADING_STATUS.loading, isPaginating: false));
       }
-    } else {//pagination loading
-      emit(state.copyWith(isPaginating: event.isPaginating));
+    } else {
+      //pagination data loading
+      emit(state.copyWith(
+          status: LOADING_STATUS.loading,
+          isPaginating: event.isPaginating)); //isPaginating is true
     }
 
     try {
@@ -46,13 +51,24 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
           pageNo: event.pageNo,
           isPaginating: false));
     } on NoInternetException catch (e) {
-      emit(state.copyWith(status: LOADING_STATUS.error, errorMessage: e.error, isPaginating: false));
+      _errorHandle(e.error, emit, state, event);
     } on NetworkException catch (e) {
-      emit(state.copyWith(status: LOADING_STATUS.error, errorMessage: e.error, isPaginating: false));
+      _errorHandle(e.error, emit, state, event);
     }
   }
 
-  void _mapShowReloadGamesToState(ShowReloadGames event, Emitter<GamesState> emit) {
+  void _errorHandle(String error, Emitter<GamesState> emit, GamesState state,
+      GetGames event) {
+    //error thrown when pagination was happening, event.isPaginating =  true
+    //error thrown when initial loading, event.isPaginating = false
+    emit(state.copyWith(
+        status: LOADING_STATUS.error,
+        errorMessage: error,
+        isPaginating: (event.isPaginating) ? true : false));
+  }
+
+  void _mapShowReloadGamesToState(
+      ShowReloadGames event, Emitter<GamesState> emit) {
     emit(state.copyWith(status: LOADING_STATUS.loading, isPaginating: false));
   }
 }

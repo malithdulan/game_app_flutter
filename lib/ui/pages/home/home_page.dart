@@ -41,12 +41,14 @@ class _HomePageState extends State<HomePage> {
         ],
         onTap: (index) {
           if (currentIndex == index) {
+            //only go to root when click their respective tabBottom icon, this expression avoid going to root when changing the tabs.
             switch (index) {
               case 0:
                 firstTabNavKey.currentState?.popUntil((route) => route.isFirst);
                 break;
               case 1:
-                secondTabNavKey.currentState?.popUntil((route) => route.isFirst);
+                secondTabNavKey.currentState
+                    ?.popUntil((route) => route.isFirst);
                 break;
               case 2:
                 thirdTabNavKey.currentState?.popUntil((route) => route.isFirst);
