@@ -13,13 +13,13 @@ class GameListSuccess extends StatefulWidget {
   final int? pageNo;
   final int? totalGames;
   final bool isPaginated;
-  const GameListSuccess(
-      {Key? key,
-      required this.games,
-      required this.pageNo,
-      required this.totalGames,
-      required this.isPaginated,})
-      : super(key: key);
+  const GameListSuccess({
+    Key? key,
+    required this.games,
+    required this.pageNo,
+    required this.totalGames,
+    required this.isPaginated,
+  }) : super(key: key);
 
   @override
   State<GameListSuccess> createState() => _GameListSuccessState();
@@ -28,9 +28,12 @@ class GameListSuccess extends StatefulWidget {
 class _GameListSuccessState extends State<GameListSuccess> {
   final ScrollController scrollController = ScrollController();
   late bool isLoading;
+  late bool paginateExpression;
   @override
   void initState() {
     isLoading = widget.isPaginated;
+    paginateExpression = ((widget.games?.length ?? 0) <
+        (widget.totalGames ?? 0)); //if values available to paginate.
     scrollController.addListener(() => _pagination());
     super.initState();
   }
@@ -44,7 +47,8 @@ class _GameListSuccessState extends State<GameListSuccess> {
   _pagination() {
     if ((scrollController.position.pixels ==
             scrollController.position.maxScrollExtent) &&
-        ((widget.games?.length ?? 0) < (widget.totalGames ?? 0)) && !isLoading) {
+        paginateExpression &&
+        !isLoading) {
       isLoading = true;
       context.read<GamesBloc>().add(GetGames(
             pageNo: (widget.pageNo ?? 0) + 1,
@@ -56,11 +60,12 @@ class _GameListSuccessState extends State<GameListSuccess> {
   @override
   Widget build(BuildContext context) {
     return MediaQuery.removePadding(
-      removeTop: false,//set to true if you want to remove default top padding of listview
+      removeTop:
+          false, //set to true if you want to remove default top padding of listview
       context: context,
       child: ListView.builder(
         itemBuilder: (context, index) {
-          if (index == widget.games?.length) {
+          if (paginateExpression && index == widget.games?.length) {
             return const GameListProgressIndicator();
           } else {
             return GameListItem(
@@ -69,7 +74,11 @@ class _GameListSuccessState extends State<GameListSuccess> {
             );
           }
         },
-        itemCount: (widget.games != null) ? (widget.games!.length + 1) : null,
+        itemCount: (widget.games != null)
+            ? ((paginateExpression)
+                ? (widget.games!.length + 1)
+                : (widget.games!.length))
+            : null,
         controller: scrollController,
       ),
     );
