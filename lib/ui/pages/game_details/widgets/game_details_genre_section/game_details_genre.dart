@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:game_app/helper/utils.dart';
 
 import 'package:game_app/repositories/models/genre.dart';
 
-import 'package:game_app/ui/global_widgets/common_layout_card.dart';
+import 'package:game_app/ui/global_widgets/common_list_layout_card.dart';
 import 'package:game_app/ui/pages/game_details/widgets/game_details_genre_section/game_details_genre_grid.dart';
 
 class GameDetailsGenre extends StatelessWidget {
@@ -11,15 +12,14 @@ class GameDetailsGenre extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CommonLayoutCard(
+    return CommonListLayoutCard(
       isLastItem: true, //if this is last element, increase padding bottom
       children: [
-        const Text(
+        Text(
           "Genres",
           style: TextStyle(
-            fontFamily: 'Roboto',
             fontWeight: FontWeight.w700,
-            fontSize: 17,
+            fontSize: Utils.shared.fScale(17),
           ),
         ),
         GameDetailsGenreGrid(data: data),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:game_app/helper/utils.dart';
 
-import 'package:game_app/ui/global_widgets/common_layout_card.dart';
+import 'package:game_app/ui/global_widgets/common_list_layout_card.dart';
 import 'package:game_app/ui/global_widgets/game_item_rating.dart';
 import 'package:game_app/ui/pages/game_details/widgets/title_section/game_details_date_tile.dart';
 import 'package:game_app/ui/pages/game_details/widgets/title_section/game_details_genres_tile.dart';
@@ -15,7 +15,7 @@ class GameDetailsTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CommonLayoutCard(
+    return CommonListLayoutCard(
       children: [
         Text(
           data?.name ?? "Header title Header title",

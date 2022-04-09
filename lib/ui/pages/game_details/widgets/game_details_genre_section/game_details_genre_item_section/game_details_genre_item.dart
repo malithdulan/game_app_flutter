@@ -23,20 +23,24 @@ class GameDetailsGenreItem extends StatelessWidget {
             child: GameDetailsGenreItemImage(imageUrl: data?.imageBackground),
           ),
           Container(
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.primary,
             padding: EdgeInsets.all(Utils.shared.percentW(2)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   data?.name ?? "",
-                  style: const TextStyle(
-                    fontFamily: "Roboto",
+                  style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontSize: 15,
+                    fontSize: Utils.shared.fScale(15),
                   ),
                 ),
-                Text("Games: ${data?.gamesCount ?? ""}")
+                Text(
+                  "Games: ${data?.gamesCount ?? ""}",
+                  style: TextStyle(
+                    fontSize: Utils.shared.fScale(14),
+                  ),
+                ),
               ],
             ),
           )

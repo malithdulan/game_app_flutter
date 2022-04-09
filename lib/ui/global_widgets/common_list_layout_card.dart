@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../helper/utils.dart';
 
-class CommonLayoutCard extends StatelessWidget {
-  final Widget child;
+class CommonListLayoutCard extends StatelessWidget {
+  final List<Widget> children;
   final bool isLastItem;
-  const CommonLayoutCard(
-      {Key? key, required this.child, this.isLastItem = false})
+  const CommonListLayoutCard(
+      {Key? key, required this.children, this.isLastItem = false})
       : super(key: key);
 
   @override
@@ -22,7 +22,10 @@ class CommonLayoutCard extends StatelessWidget {
       elevation: 5,
       child: Padding(
         padding: EdgeInsets.all(Utils.shared.percentW(3)),
-        child: child,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: children,
+        ),
       ),
     );
   }

@@ -12,12 +12,11 @@ class GameDetailsDateTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text(
+        Text(
           "Released:",
           style: TextStyle(
-            fontFamily: "Roboto",
             fontWeight: FontWeight.w500,
-            fontSize: 16,
+            fontSize: Utils.shared.fScale(16),
           ),
         ),
         SizedBox(
@@ -25,10 +24,9 @@ class GameDetailsDateTile extends StatelessWidget {
         ),
         Text(
           (date != null) ? DateFormat("yyyy-MM-dd").format(date!) : "",
-          style: const TextStyle(
-            fontFamily: "Roboto",
+          style: TextStyle(
             fontWeight: FontWeight.w700,
-            fontSize: 16,
+            fontSize: Utils.shared.fScale(16),
           ),
         ),
       ],

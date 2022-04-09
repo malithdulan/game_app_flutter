@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_app/helper/extensions.dart';
+import 'package:game_app/helper/utils.dart';
 import 'package:game_app/ui/pages/game_list/blocs/games_bloc/games_bloc.dart';
 
 class GameListPaginateIndicator extends StatelessWidget {
@@ -23,10 +24,9 @@ class GameListPaginateIndicator extends StatelessWidget {
           builder: (context, state) => (state.status.isError) //error or loading
               ? Text(
                   state.errorMessage ?? "",
-                  style: const TextStyle(
-                    fontFamily: 'Roboto',
+                  style: TextStyle(
                     fontWeight: FontWeight.w500,
-                    fontSize: 12,
+                    fontSize: Utils.shared.fScale(12),
                   ),
                 )
               : Opacity(

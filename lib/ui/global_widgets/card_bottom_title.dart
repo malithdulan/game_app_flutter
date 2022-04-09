@@ -5,7 +5,8 @@ import '../../helper/utils.dart';
 class CardBottomTitle extends StatelessWidget {
   final String name;
   final double width;
-  const CardBottomTitle({Key? key, required this.name, required this.width}) : super(key: key);
+  const CardBottomTitle({Key? key, required this.name, required this.width})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +26,10 @@ class CardBottomTitle extends StatelessWidget {
         name,
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: const TextStyle(
-          fontFamily: "Roboto",
+        style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.w700,
+          fontSize: Utils.shared.fScale(14),
         ),
       ),
     );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:game_app/helper/utils.dart';
 
 import 'package:game_app/repositories/models/platform_element.dart';
-import 'package:game_app/ui/global_widgets/common_layout_card.dart';
+import 'package:game_app/ui/global_widgets/common_list_layout_card.dart';
 import 'package:game_app/ui/pages/game_details/widgets/platform_section/game_details_platfom_grid.dart';
 
 class GameDetailsPlatform extends StatelessWidget {
@@ -10,17 +11,18 @@ class GameDetailsPlatform extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CommonLayoutCard(
+    return CommonListLayoutCard(
       children: [
-        const Text(
+        Text(
           "Platforms",
           style: TextStyle(
-            fontFamily: 'Roboto',
             fontWeight: FontWeight.w700,
-            fontSize: 17,
+            fontSize: Utils.shared.fScale(17),
           ),
         ),
-        GameDetailsPlatformGrid(data: data,),
+        GameDetailsPlatformGrid(
+          data: data,
+        ),
       ],
     );
   }

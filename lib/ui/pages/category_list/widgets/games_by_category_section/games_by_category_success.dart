@@ -27,9 +27,8 @@ class GamesByCategorySuccess extends StatelessWidget {
               alignment: Alignment.bottomLeft,
               child: Text(
                 categoryName ?? "",
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontFamily: "Roboto",
+                style: TextStyle(
+                  fontSize: Utils.shared.fScale(20),
                   fontWeight: FontWeight.w700,
                 ),
               ),

@@ -8,7 +8,6 @@ import '../../../../../../repositories/models/result.dart';
 import '../../../../game_details/game_details_page.dart';
 import 'game_list_item_image.dart';
 
-
 class GameListItem extends StatelessWidget {
   final Result? data;
   const GameListItem({Key? key, required this.data}) : super(key: key);
@@ -35,29 +34,27 @@ class GameListItem extends StatelessWidget {
             ),
             Expanded(
               child: Container(
+                color: Theme.of(context).colorScheme.primary,
                 padding:
                     EdgeInsets.symmetric(horizontal: Utils.shared.percentW(2)),
-                color: Colors.white,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
                       data?.name ?? "",
-                      style: const TextStyle(
-                        fontFamily: "Roboto",
+                      style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontSize: 16,
+                        fontSize: Utils.shared.fScale(16),
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       data?.genres?.first.name ?? "",
-                      style: const TextStyle(
-                        fontFamily: "Roboto",
+                      style: TextStyle(
                         fontWeight: FontWeight.w500,
-                        fontSize: 14,
+                        fontSize: Utils.shared.fScale(14),
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

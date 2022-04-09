@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 import 'package:game_app/helper/app_data.dart';
 import 'package:game_app/helper/constants.dart';
@@ -70,7 +72,7 @@ class Utils {
   MaterialPageRoute? onGenerateRoute(RouteSettings settings) {
     return MaterialPageRoute(
       builder: (context) {
-        AppData.shared.setDeviceValues(context);//set important app data
+        AppData.shared.setDeviceValues(context); //set important app data
         return const HomePage(); //home page (tab bar page)
       },
       settings: settings,
@@ -87,12 +89,20 @@ class Utils {
     return AppData.shared.dvw * (value / 100);
   }
 
+  //scale font size according to device size
+  final Size _designLayoutSize =
+      const Size(432, 816); //Pixel 3a XL API 30 (full height, width)
+  double fScale(double value) {
+    //font scale
+    return (value / min(_designLayoutSize.height, _designLayoutSize.width)) *
+        min(AppData.shared.dvfh, AppData.shared.dvw);
+  }
 
-  executeWithDelay({required FutureOr  Function() callBack}) {
+  executeWithDelay({required FutureOr Function() callBack}) {
     Future.delayed(const Duration(seconds: 1), callBack);
   }
 
+  //dark mode or not
+  bool get isDark =>
+      SchedulerBinding.instance?.window.platformBrightness == Brightness.dark;
 }
-
-
-

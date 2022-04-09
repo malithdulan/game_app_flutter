@@ -34,7 +34,9 @@ class CategoryItem extends StatelessWidget {
                 ? true
                 : false,
         builder: (context, state) => GestureDetector(
-          onTap: () => (!state) ? _selectCategory(context) : () {},//set selected item avoid trigger events
+          onTap: () => (!state)
+              ? _selectCategory(context)
+              : () {}, //set selected item avoid trigger events
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -46,9 +48,8 @@ class CategoryItem extends StatelessWidget {
                 category?.name ?? "",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: state ? 15 : 12,
+                  fontSize: Utils.shared.fScale(state ? 15 : 12),
                   overflow: TextOverflow.ellipsis,
-                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w500,
                 ),
                 maxLines: 2,

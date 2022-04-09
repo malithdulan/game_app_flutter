@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_app/helper/utils.dart';
 
 import '../../../../../repositories/models/genre.dart';
 
@@ -7,10 +8,9 @@ class GameDetailsGenresTile extends StatelessWidget {
   const GameDetailsGenresTile({Key? key, required this.data}) : super(key: key);
 
   TextStyle _fontStyle() {
-    return const TextStyle(
-      fontFamily: "Roboto",
+    return TextStyle(
       fontWeight: FontWeight.w500,
-      fontSize: 16,
+      fontSize: Utils.shared.fScale(16),
     );
   }
 

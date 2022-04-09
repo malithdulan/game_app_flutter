@@ -12,49 +12,44 @@ class ErrorPlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (showImage)
-            Padding(
-              padding: EdgeInsets.only(bottom: Utils.shared.percentPH(1.5)),
-              child: LayoutBuilder(
-                builder: (context, constraints) => Image.asset(
-                  AssetImageUrls.errorWidgetImage,
-                  fit: BoxFit.cover,
-                  width: constraints.maxWidth * (50 / 100),
-                  height: constraints.maxWidth * (25 / 100),
-                ),
-              ),
-            ),
-          Text(
-            message ?? "",
-            style: const TextStyle(
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.w700,
-              fontSize: 16,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (showImage)
+          Padding(
+            padding: EdgeInsets.only(bottom: Utils.shared.percentPH(1.5)),
+            child: Image.asset(
+              AssetImageUrls.errorWidgetImage,
+              fit: BoxFit.cover,
+              width: Utils.shared.percentW(60),
+              height: Utils.shared.percentPH(15), //intentionally
             ),
           ),
-          SizedBox(
-            height: Utils.shared.percentPH(1.5),
+        Text(
+          message ?? "",
+          style: TextStyle(
+            fontFamily: 'Roboto',
+            fontWeight: FontWeight.w700,
+            fontSize: Utils.shared.fScale(16),
           ),
-          SizedBox(
-            height: Utils.shared.percentPH(4),
-            width: Utils.shared.percentW(20),
-            child: ElevatedButton(
-              onPressed: () => callBack(),
-              child: const Text(
-                "Reload",
-                style: TextStyle(
-                  fontFamily: 'Roboto',
+        ),
+        SizedBox(
+          height: Utils.shared.percentPH(1.5),
+        ),
+        SizedBox(
+          height: Utils.shared.percentPH(4),
+          width: Utils.shared.percentW(20),
+          child: ElevatedButton(
+            onPressed: () => callBack(),
+            child: Text(
+              "Reload",
+              style: TextStyle(
                   fontWeight: FontWeight.w500,
-                ),
-              ),
+                  fontSize: Utils.shared.fScale(14)),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }

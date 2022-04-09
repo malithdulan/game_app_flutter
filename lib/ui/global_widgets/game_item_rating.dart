@@ -23,10 +23,9 @@ class GameItemRating extends StatelessWidget {
           padding: EdgeInsets.only(left: Utils.shared.percentW(2)),
           child: Text(
             "${data?.rating} / 5",
-            style: const TextStyle(
-              fontFamily: "Roboto",
+            style: TextStyle(
               fontWeight: FontWeight.w700,
-              fontSize: 12,
+              fontSize: Utils.shared.fScale(12),
             ),
           ),
         ),
