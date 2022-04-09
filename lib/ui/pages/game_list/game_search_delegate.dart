@@ -32,26 +32,31 @@ class GameSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    return _getSearchItemListView(data: _getMatchedQueryData(), key: "SearchGameListResult");
+    return _getSearchItemListView(
+        data: _getMatchedQueryData(), key: "SearchGameListResult");
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return _getSearchItemListView(data: _getMatchedQueryData(), key: "SearchGameListSuggestions");
+    return _getSearchItemListView(
+        data: _getMatchedQueryData(), key: "SearchGameListSuggestions");
   }
 
   List<Result> _getMatchedQueryData() {
     List<Result> matchedQueryData = [];
     for (Result value in data ?? []) {
       String? name = value.name;
-      if (((name != null) ? name.toLowerCase().contains(query.toLowerCase()) : false)) {
+      if (((name != null)
+          ? name.toLowerCase().contains(query.toLowerCase())
+          : false)) {
         matchedQueryData.add(value);
       }
     }
     return matchedQueryData;
   }
 
-  ListView _getSearchItemListView({required List<Result> data, required String key}) {
+  ListView _getSearchItemListView(
+      {required List<Result> data, required String key}) {
     return ListView.builder(
       itemBuilder: (context, index) {
         return GameListItem(
@@ -60,6 +65,7 @@ class GameSearchDelegate extends SearchDelegate {
         );
       },
       itemCount: data.length,
+      physics: const BouncingScrollPhysics(),
     );
   }
 }

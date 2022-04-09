@@ -47,6 +47,7 @@ class _GamesByCategoryGridState extends State<GamesByCategoryGrid> {
         mainAxisExtent: Utils.shared.percentW(50),
       ),
       controller: scrollController,
+      physics: const BouncingScrollPhysics(),
     );
   }
 

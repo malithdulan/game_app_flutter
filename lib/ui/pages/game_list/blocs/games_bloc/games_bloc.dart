@@ -33,6 +33,8 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
       emit(state.copyWith(
           status: LOADING_STATUS.loading,
           isPaginating: event.isPaginating)); //isPaginating is true
+      await Future.delayed(const Duration(
+          seconds: 1)); //avoid user confusion on paginate error and loading
     }
 
     try {

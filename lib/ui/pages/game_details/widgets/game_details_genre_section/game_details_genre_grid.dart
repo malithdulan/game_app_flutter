@@ -14,7 +14,9 @@ class GameDetailsGenreGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: (data != null && data!.length > 2) ? Utils.shared.percentPH(40) : Utils.shared.percentPH(28.5),
+      height: (data != null && data!.length > 2)
+          ? Utils.shared.percentPH(40)
+          : Utils.shared.percentPH(28.5),
       child: MasonryGridView.count(
         padding: EdgeInsets.all(Utils.shared.percentW(2)),
         // the number of columns
@@ -24,7 +26,7 @@ class GameDetailsGenreGrid extends StatelessWidget {
         mainAxisSpacing: Utils.shared.percentW(4),
         // horizontal gap between two items
         crossAxisSpacing: Utils.shared.percentW(4),
-        physics: const ClampingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) => GameDetailsGenreItem(
           key: ValueKey("${data?[index].name}GameDetailsGenreItem"),
           data: data?[index],

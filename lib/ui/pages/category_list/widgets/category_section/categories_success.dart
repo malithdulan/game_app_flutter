@@ -20,7 +20,7 @@ class CategoriesSuccess extends StatelessWidget {
       ),
       itemCount: categories?.length,
       scrollDirection: Axis.horizontal,
-      //physics: const BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 1,
         mainAxisExtent: Utils.shared.percentW(25),

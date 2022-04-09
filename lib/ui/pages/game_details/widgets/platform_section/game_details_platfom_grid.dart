@@ -23,6 +23,7 @@ class GameDetailsPlatformGrid extends StatelessWidget {
           data: data?[index],
         ),
         itemCount: data?.length,
+        physics: const BouncingScrollPhysics(),
       ),
     );
   }
