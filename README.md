@@ -1,16 +1,9 @@
 # game_app
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* Game details flutter app with complete authentication including jwt and facebook, google login.
+* Dark and Light theme available including the ability of changing them independently apart from the system status.
+* Full responsive potrait layout. (fonts also responsive)
+* complete error handling including no internet connection. (no internet error handle is in listview pagination as well)
+* Listview pagination with the backend is also include.
+* Game search also available.
+* flutter bloc lib is used as state management.
+* Feel free to add new features.
