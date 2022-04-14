@@ -12,3 +12,5 @@ enum NETWORK_REQUEST_TYPE {
 }
 
 enum LOADING_STATUS { initial, success, error, loading }
+
+enum AUTH_TYPE { google, facebook, email }

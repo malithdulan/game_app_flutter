@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_app/helper/utils.dart';
+import 'package:game_app/repositories/auth_repository.dart';
 import 'package:game_app/repositories/game_repository.dart';
 import 'package:game_app/ui/global_blocs/theme_bloc/theme_bloc.dart';
 
@@ -60,9 +61,12 @@ class _GameAppState extends State<GameApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
+    return MultiRepositoryProvider(
       //provide a single repository instance
-      create: (context) => GameRepository(),
+      providers: [
+        RepositoryProvider(create: (context) => GameRepository()),
+        RepositoryProvider(create: (context) => AuthRepository()),
+      ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) => MaterialApp(
           title: 'Game App',
