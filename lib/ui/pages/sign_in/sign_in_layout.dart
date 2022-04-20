@@ -24,22 +24,22 @@ class SignInLayout extends StatelessWidget {
         ),
         Positioned(
           left: 0,
-          top: Utils.shared.percentPH(45),
+          top: Utils.shared.percentPH(48),
           child: const SignInForm(),
         ),
         Positioned(
           left: Utils.shared.percentW(7),
-          top: Utils.shared.percentPH(65),
+          top: Utils.shared.percentPH(68),
           child: const SocialSignIn(),
         ),
         Positioned(
           left: Utils.shared.percentW(7),
-          top: Utils.shared.percentPH(80),
+          top: Utils.shared.percentPH(83),
           child: const RegisterText(),
         ),
         Positioned(
           right: Utils.shared.percentW(20),
-          top: Utils.shared.percentPH(62),
+          top: Utils.shared.percentPH(65),
           child: const ForgotText(),
         ),
       ],

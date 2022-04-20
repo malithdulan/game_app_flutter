@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:game_app/ui/pages/category_list/category_list_page.dart';
 import 'package:game_app/ui/pages/game_list/game_list_page.dart';
-import 'package:game_app/ui/pages/sign_in/sign_in_page.dart';
 import 'package:game_app/ui/pages/user_details/user_details_page.dart';
 
 import '../game_details/game_details_page.dart';
@@ -68,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                 GameDetailsPage.name: (context) => const GameDetailsPage(),
               },
               builder: (context) => const CupertinoPageScaffold(
-                child: SignInPage(),
+                child: CategoryListPage(),
               ),
             );
           case 1:
