@@ -15,6 +15,7 @@ class AppData {
   late double dvfh; //device full height
   late double
       dvph; //device height without system bottom navigation panel height (device partial height)
+  late Size deviceSize; //device full size regardless of safe areas
 
   void setDeviceValues(BuildContext context) {
     double deviceHeight = MediaQuery.of(context).size.height;
@@ -28,5 +29,7 @@ class AppData {
     dvph = deviceHeight - bottomNavHeight;
 
     dvw = MediaQuery.of(context).size.width;
+
+    deviceSize = MediaQuery.of(context).size;
   }
 }
