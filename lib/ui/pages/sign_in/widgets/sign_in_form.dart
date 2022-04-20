@@ -28,7 +28,7 @@ class SignInForm extends StatelessWidget {
                       Icons.account_circle_rounded,
                       color: Colors.grey,
                     ),
-                    hintText: "Username",
+                    hintText: "Email",
                   ),
                   cursorColor: Colors.black,
                   style: TextStyle(fontSize: Utils.shared.fScale(20)),
@@ -48,7 +48,7 @@ class SignInForm extends StatelessWidget {
                       Icons.password_rounded,
                       color: Colors.grey,
                     ),
-                    hintText: "********",
+                    hintText: "Password",
                   ),
                   cursorColor: Colors.black,
                   style: TextStyle(

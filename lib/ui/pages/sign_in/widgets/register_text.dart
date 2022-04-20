@@ -10,7 +10,7 @@ class RegisterText extends StatelessWidget {
     return GestureDetector(
       onTap: () => print("clicked"),
       child: Text(
-        "Register",
+        "Sign Up",
         style: TextStyle(
           fontSize: Utils.shared.fScale(20),
           fontWeight: FontWeight.w700,
