@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:game_app/ui/pages/sign_up/sign_up_page.dart';
 
 import '../../../../helper/utils.dart';
 
@@ -8,7 +9,11 @@ class RegisterText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => print("clicked"),
+      onTap: () => Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const SignUpPage(),
+        ),
+      ),
       child: Text(
         "Sign Up",
         style: TextStyle(

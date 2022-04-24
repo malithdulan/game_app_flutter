@@ -8,6 +8,7 @@ import 'package:game_app/helper/app_data.dart';
 import 'package:game_app/helper/constants.dart';
 
 import 'package:game_app/ui/pages/home/home_page.dart';
+import 'package:game_app/ui/pages/sign_in/sign_in_page.dart';
 import '../ui/pages/category_list/category_list_page.dart';
 import '../ui/pages/game_details/game_details_page.dart';
 
@@ -73,7 +74,7 @@ class Utils {
     return MaterialPageRoute(
       builder: (context) {
         AppData.shared.setDeviceValues(context); //set important app data
-        return const HomePage(); //home page (tab bar page)
+        return const SignInPage(); //home page (tab bar page)
       },
       settings: settings,
     );

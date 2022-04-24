@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../helper/utils.dart';
+import '../../sign_in/sign_in_page.dart';
 
 class LoginText extends StatelessWidget {
   const LoginText({Key? key}) : super(key: key);
@@ -8,7 +9,11 @@ class LoginText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => print("clicked"),
+      onTap: () => Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const SignInPage(),
+        ),
+      ),
       child: Text(
         "Sign In",
         style: TextStyle(

@@ -8,6 +8,7 @@ import 'package:game_app/helper/utils.dart';
 import 'package:game_app/repositories/auth_repository.dart';
 import 'package:game_app/repositories/game_repository.dart';
 import 'package:game_app/ui/global_blocs/theme_bloc/theme_bloc.dart';
+import 'package:game_app/ui/global_widgets/dismiss_keyboard.dart';
 
 import 'package:logging/logging.dart';
 
@@ -68,13 +69,15 @@ class _GameAppState extends State<GameApp> with WidgetsBindingObserver {
         RepositoryProvider(create: (context) => AuthRepository()),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (context, state) => MaterialApp(
-          title: 'Game App',
-          themeMode: state.themeMode,
-          theme: GameThemes.lightTheme,
-          darkTheme: GameThemes.darkTheme,
-          onGenerateRoute: (routeSettings) =>
-              Utils.shared.onGenerateRoute(routeSettings),
+        builder: (context, state) => DismissKeyboard(
+          child: MaterialApp(
+            title: 'Game App',
+            themeMode: state.themeMode,
+            theme: GameThemes.lightTheme,
+            darkTheme: GameThemes.darkTheme,
+            onGenerateRoute: (routeSettings) =>
+                Utils.shared.onGenerateRoute(routeSettings),
+          ),
         ),
       ),
     );

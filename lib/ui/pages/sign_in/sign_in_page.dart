@@ -12,6 +12,7 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: BlocProvider(
         create: (context) =>
             SignInBloc(repository: context.read<AuthRepository>()),
