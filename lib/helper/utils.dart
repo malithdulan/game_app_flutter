@@ -109,4 +109,16 @@ class Utils {
   Map<String, dynamic>? getJsonBody(Map<String, dynamic> data) {
     return data["body"] as Map<String, dynamic>?;
   }
+
+  showErrorToastMessage(BuildContext context, String? message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(
+        message ?? "",
+        style: const TextStyle(
+          color: Colors.white,
+        ),
+      ),
+      backgroundColor: Colors.red,
+    ));
+  }
 }

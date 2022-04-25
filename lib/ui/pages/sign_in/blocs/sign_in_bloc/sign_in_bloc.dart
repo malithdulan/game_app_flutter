@@ -4,7 +4,9 @@ import 'package:game_app/repositories/auth_repository.dart';
 import 'package:game_app/repositories/models/auth_models/google_user.dart';
 import 'package:game_app/repositories/models/auth_models/sign_in_user.dart';
 
+import '../../../../../helper/constants.dart';
 import '../../../../../helper/enums.dart';
+import '../../../../../helper/error.dart';
 
 part 'sign_in_event.dart';
 part 'sign_in_state.dart';
@@ -34,13 +36,23 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   void _mapEmailSignInEventToState(
       EmailSignIn event, Emitter<SignInState> emit) async {
-    int statusCode = await repository.signAccount(event.user);
-    if (statusCode == 200) {
-      //user authenticated
-      emit(state.copyWith(state: AUTH_STATE.valid));
-    } else {
-      //status code 422, credentials wrong
-      emit(state.copyWith(state: AUTH_STATE.inValid));
+    emit(state.copyWith(
+        state: AUTH_STATE.loading)); //authentication is in progress
+    try {
+      int statusCode = await repository.signInAccount(event.user);
+      if (statusCode == StatusCodes.statusCodeRequestSuccess) {
+        //user authenticated
+        emit(state.copyWith(state: AUTH_STATE.valid));
+      } else if (statusCode == StatusCodes.statusCodeUnProcessableEntity) {
+        //status code 422, credentials wrong
+        emit(state.copyWith(
+            state: AUTH_STATE.inValid,
+            errorMessage: Constants.wrongCredentials));
+      }
+    } on NoInternetException catch (e) {
+      emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
+    } on NetworkException catch (e) {
+      emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
     }
   }
 }

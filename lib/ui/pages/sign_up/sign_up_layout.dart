@@ -24,7 +24,7 @@ class SignUpLayout extends StatelessWidget {
         ),
         Positioned(
           right: Utils.shared.percentW(20),
-          top: Utils.shared.percentPH(73),
+          top: Utils.shared.percentPH(76),
           child: const LoginText(),
         ),
       ],

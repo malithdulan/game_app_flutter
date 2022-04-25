@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:game_app/helper/enums.dart';
+import 'package:game_app/helper/extensions.dart';
+import 'package:game_app/helper/utils.dart';
 import 'package:game_app/repositories/auth_repository.dart';
 import 'package:game_app/ui/pages/sign_in/blocs/sign_in_bloc/sign_in_bloc.dart';
 
@@ -19,7 +22,12 @@ class SignInPage extends StatelessWidget {
         child: BlocListener<SignInBloc, SignInState>(
           listenWhen: (previous, current) =>
               previous.authState != current.authState,
-          listener: (context, state) => print(state.authState),
+          listener: (context, state) {
+            if (state.authState.isValid) {
+            } else if (state.authState.isInValid) {
+              Utils.shared.showErrorToastMessage(context, state.errorMessage);
+            }
+          },
           child: const SignInLayout(),
         ),
       ),

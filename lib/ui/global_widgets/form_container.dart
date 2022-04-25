@@ -11,7 +11,7 @@ class FormContainer extends StatelessWidget {
       width: Utils.shared.percentW(75),
       padding: EdgeInsets.only(
         left: Utils.shared.percentW(7),
-        right: Utils.shared.percentW(7),
+        right: Utils.shared.percentW(10),
         top: Utils.shared.percentPH(1),
         bottom: Utils.shared.percentPH(1),
       ),

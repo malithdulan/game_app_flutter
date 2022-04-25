@@ -6,6 +6,7 @@ import 'package:game_app/repositories/models/auth_models/sign_in_user.dart';
 import 'package:game_app/repositories/models/auth_models/sign_up_user.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../../../helper/managers/authentication_manager.dart';
+import '../helper/constants.dart';
 
 class AuthRepository {
   int? _getStatusCode(Map<String, dynamic> data) {
@@ -25,10 +26,10 @@ class AuthRepository {
     return Future.value("Auth");
   }
 
-  Future<int> signAccount(SignInUser? user) async {
+  Future<int> signInAccount(SignInUser? user) async {
     Map<String, dynamic> data = await Net.shared.signIn(user);
     int? code = _getStatusCode(data);
-    if (code == 200) {
+    if (code == StatusCodes.statusCodeRequestSuccess) {
       Map<String, dynamic>? resData =
           Utils.shared.getJsonBody(data)?["data"] as Map<String, dynamic>?;
       String? token = resData?["token"] as String?;

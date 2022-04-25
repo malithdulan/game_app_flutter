@@ -2,15 +2,15 @@ part of 'sign_in_bloc.dart';
 
 class SignInState extends Equatable {
   final AUTH_STATE authState;
+  final String? errorMessage;
 
-  const SignInState({this.authState = AUTH_STATE.initial});
+  const SignInState({this.authState = AUTH_STATE.initial, this.errorMessage});
 
   @override
-  List<Object?> get props => [AUTH_STATE];
+  List<Object?> get props => [authState];
 
-  SignInState copyWith({required AUTH_STATE state}) {
+  SignInState copyWith({required AUTH_STATE state, String? errorMessage}) {
     return SignInState(
-      authState: state,
-    );
+        authState: state, errorMessage: errorMessage ?? this.errorMessage);
   }
 }

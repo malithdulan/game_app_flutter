@@ -15,6 +15,7 @@ extension ThemeStatus on ThemeMode {
 
 extension AuthState on AUTH_STATE {
   bool get isInitial => this == AUTH_STATE.initial;
+  bool get isLoading => this == AUTH_STATE.loading;
   bool get isValid => this == AUTH_STATE.valid;
   bool get isInValid => this == AUTH_STATE.inValid;
 }
