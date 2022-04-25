@@ -12,3 +12,9 @@ extension Loadingstatus on LOADING_STATUS {
 extension ThemeStatus on ThemeMode {
   bool get isDark => this == ThemeMode.dark;
 }
+
+extension AuthState on AUTH_STATE {
+  bool get isInitial => this == AUTH_STATE.initial;
+  bool get isValid => this == AUTH_STATE.valid;
+  bool get isInValid => this == AUTH_STATE.inValid;
+}

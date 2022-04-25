@@ -52,7 +52,9 @@ class SignUpForm extends StatelessWidget {
             right: -Utils.shared.percentW(13),
             //(formContainer height 18 / 2) - half height of submit button
             top: (Utils.shared.percentPH(18) / 2) - Utils.shared.percentW(6),
-            child: const FormButton(),
+            child: FormButton(
+              callback: () {},
+            ),
           ),
         ],
       ),

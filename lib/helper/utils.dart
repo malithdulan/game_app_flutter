@@ -7,7 +7,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:game_app/helper/app_data.dart';
 import 'package:game_app/helper/constants.dart';
 
-import 'package:game_app/ui/pages/home/home_page.dart';
 import 'package:game_app/ui/pages/sign_in/sign_in_page.dart';
 import '../ui/pages/category_list/category_list_page.dart';
 import '../ui/pages/game_details/game_details_page.dart';
@@ -106,4 +105,8 @@ class Utils {
   //dark mode or not
   bool get isDark =>
       SchedulerBinding.instance?.window.platformBrightness == Brightness.dark;
+
+  Map<String, dynamic>? getJsonBody(Map<String, dynamic> data) {
+    return data["body"] as Map<String, dynamic>?;
+  }
 }

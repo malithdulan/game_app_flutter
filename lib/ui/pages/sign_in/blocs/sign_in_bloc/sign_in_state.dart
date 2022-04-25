@@ -1,16 +1,16 @@
 part of 'sign_in_bloc.dart';
 
 class SignInState extends Equatable {
-  final bool isAuthenticated;
+  final AUTH_STATE authState;
 
-  const SignInState({this.isAuthenticated = false});
+  const SignInState({this.authState = AUTH_STATE.initial});
 
   @override
-  List<Object?> get props => [isAuthenticated];
+  List<Object?> get props => [AUTH_STATE];
 
-  SignInState copyWith({required bool authStatus}) {
+  SignInState copyWith({required AUTH_STATE state}) {
     return SignInState(
-      isAuthenticated: authStatus,
+      authState: state,
     );
   }
 }

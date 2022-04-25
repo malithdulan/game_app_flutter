@@ -7,11 +7,13 @@ class FormTextField extends TextField {
   final Key? fieldKey;
   final FormTextFieldDecoration fieldDecoration;
   final bool isObscureText;
+  final TextEditingController? textController;
 
   const FormTextField(
       {required this.fieldDecoration,
       this.fieldKey,
-      this.isObscureText = false})
+      this.isObscureText = false,
+      this.textController})
       : super(key: fieldKey);
 
   @override
@@ -30,4 +32,7 @@ class FormTextField extends TextField {
 
   @override
   bool get obscureText => isObscureText;
+
+  @override
+  TextEditingController? get controller => textController;
 }

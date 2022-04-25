@@ -18,8 +18,8 @@ class SignInPage extends StatelessWidget {
             SignInBloc(repository: context.read<AuthRepository>()),
         child: BlocListener<SignInBloc, SignInState>(
           listenWhen: (previous, current) =>
-              previous.isAuthenticated != current.isAuthenticated,
-          listener: (context, state) => print(state.isAuthenticated),
+              previous.authState != current.authState,
+          listener: (context, state) => print(state.authState),
           child: const SignInLayout(),
         ),
       ),

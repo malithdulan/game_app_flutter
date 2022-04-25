@@ -38,14 +38,17 @@ class Net {
 
     //check intent connection
     bool internetStatus = await ConnectivityManager.shared.checkInternet();
-    if (!internetStatus) {//no internet
+    if (!internetStatus) {
+      //no internet
       throw NoInternetException(Constants.internetErrorMessage);
     }
 
     //jwt token expire validation code
 
     //log message to terminal if enabled
-    if (isLogEnable) Log.shared.logInfo(message: "${requestType.name} request sent");
+    if (isLogEnable) {
+      Log.shared.logInfo(message: "${requestType.name} request sent");
+    }
 
     try {
       Response response;
@@ -82,10 +85,14 @@ class Net {
           break;
       }
       //log message to terminal if enabled
-      if (isLogEnable) Utils.shared.displayResponseData(response.statusCode, response.body);
+      if (isLogEnable) {
+        Utils.shared.displayResponseData(response.statusCode, response.body);
+      }
 
-      //throw client side, server side, 404 not found network errors
-      _handleNetworkErrors(response.statusCode);
+      //throw client side, server side, 404 not found network errors, 422 is ignored (data validation error)
+      if (response.statusCode != 422) {
+        _handleNetworkErrors(response.statusCode);
+      }
 
       return _getResponseData(response.body,
           response.statusCode); //return response body and status code
@@ -104,7 +111,7 @@ class Net {
   void _handleNetworkErrors(int statusCode) {
     if (statusCode == 401) {
       throw NetworkException(Constants.unauthorizedAccessErrorMessage);
-    }else if (statusCode == 404) {
+    } else if (statusCode == 404) {
       throw NetworkException(Constants.contentNotFoundErrorMessage);
     } else if (statusCode.clamp(400, 499) == statusCode) {
       throw NetworkException(Constants.clientErrorMessage);
@@ -124,4 +131,3 @@ class Net {
     return {"Content-Type": "application/json"};
   }
 }
-
