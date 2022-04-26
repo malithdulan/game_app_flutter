@@ -41,14 +41,34 @@ class Constants {
       "https://media.rawg.io/media/games/26d/26d4437715bee60138dab4a7c8c59c92.jpg";
 
   //error messages
-  static String internetErrorMessage = "Ops! no internet connection.";
-  static String internetCheckErrorMessage =
+  static const String internetErrorMessage = "Ops! no internet connection.";
+  static const String internetCheckErrorMessage =
       "Ops! something went wrong with internet check.";
-  static String networkErrorMessage = "Ops! something went wrong.";
-  static String clientErrorMessage = "Ops! error in client side.";
-  static String unauthorizedAccessErrorMessage = "Ops! unauthorized access.";
-  static String contentNotFoundErrorMessage = "Ops! content not found.";
-  static String serverErrorMessage = "Ops! error in server side.";
-  static String wrongCredentials = "Wrong credentials.";
-  static String userExists = "User already registered.";
+  static const String networkErrorMessage = "Ops! something went wrong.";
+  static const String clientErrorMessage = "Ops! error in client side.";
+  static const String unauthorizedAccessErrorMessage =
+      "Ops! unauthorized access.";
+  static const String contentNotFoundErrorMessage = "Ops! content not found.";
+  static const String serverErrorMessage = "Ops! error in server side.";
+  static const String wrongCredentials = "Wrong credentials.";
+  static const String userExists = "User already registered.";
+
+  //validation messages
+  static const String emptyEmail = "email";
+  static const String emptyPassword = "password";
+  static const String confirmPassword = "confirm password";
+  static const String passwordMissMatch = "Password doesn't match";
+  static const String emptyPhoneNumber = "phone number";
+
+  //formField text messages
+  static const String textEmail = "Email";
+  static const String textPassword = "Password";
+  static const String textConfirmPassword = "Confirm Password";
+  static const String textPhoneNumber = "+94716948293";
+
+  //regex validation strings
+  static const emailRegex = r'\S+@\S+\.\S+';
+  static const phoneNumberRegex = '^(?:[+0]9)?[0-9]{10}\$';
+  static const passwordRegex =
+      '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}\$';
 }

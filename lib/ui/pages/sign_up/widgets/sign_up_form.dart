@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:game_app/helper/constants.dart';
+import 'package:game_app/helper/enums.dart';
 import 'package:game_app/helper/extensions.dart';
 import 'package:game_app/repositories/models/auth_models/sign_up_user.dart';
 
@@ -12,16 +14,25 @@ import '../../../global_widgets/form_container.dart';
 import '../../../global_widgets/loading_placeholder.dart';
 import '../blocs/sign_up_bloc.dart';
 
-class SignUpForm extends StatelessWidget {
-  SignUpForm({Key? key}) : super(key: key);
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({Key? key}) : super(key: key);
+
+  @override
+  State<SignUpForm> createState() => _SignUpFormState();
+}
+
+class _SignUpFormState extends State<SignUpForm> {
   final SignUpUser user = SignUpUser(
     name: "",
     email: "",
     password: "",
-    accountType: "email",
-    deviceType: "mobile",
+    accountType: ACCOUNT_TYPE.email.text,
+    deviceType: DEVICE_TYPE.mobile.text,
     phoneNumber: "",
   );
+
+  final conPasController = TextEditingController();
+
   final _signUpFormKey = GlobalKey<FormState>();
 
   void _signUp(BuildContext context) {
@@ -49,46 +60,56 @@ class SignUpForm extends StatelessWidget {
                   SizedBox(
                     height: Utils.shared.percentPH(6),
                     child: TextFormField(
-                      onSaved: (value) => user.name = value,
-                      decoration: const FormTextFieldDecoration(
-                        iconData: Icons.account_circle_rounded,
-                        text: "Username",
-                      ),
-                      cursorColor: Colors.black,
-                      style: TextStyle(fontSize: Utils.shared.fScale(20)),
-                      validator: (value) =>
-                          Utils.shared.validationCheck("username", value),
-                    ),
-                  ),
-                  SizedBox(height: Utils.shared.percentPH(1)),
-                  SizedBox(
-                    height: Utils.shared.percentPH(6),
-                    child: TextFormField(
-                      onSaved: (value) => user.email = value,
+                      onSaved: (value) {
+                        user.email = value;
+                        user.name = value?.split('@')[0];
+                      },
                       decoration: const FormTextFieldDecoration(
                         iconData: Icons.email_rounded,
-                        text: "Email",
+                        text: Constants.textEmail,
                       ),
                       cursorColor: Colors.black,
                       style: TextStyle(fontSize: Utils.shared.fScale(20)),
-                      validator: (value) =>
-                          Utils.shared.validationCheck("email", value),
+                      validator: (value) => Utils.shared.validationCheck(
+                          name: Constants.emptyEmail,
+                          value: value,
+                          regex: Constants.emailRegex),
                     ),
                   ),
                   SizedBox(height: Utils.shared.percentPH(1)),
                   SizedBox(
                     height: Utils.shared.percentPH(6),
                     child: TextFormField(
+                      controller: conPasController,
                       onSaved: (value) => user.password = value,
                       decoration: const FormTextFieldDecoration(
                         iconData: Icons.password_rounded,
-                        text: "Password",
+                        text: Constants.textPassword,
                       ),
                       obscureText: true,
                       cursorColor: Colors.black,
                       style: TextStyle(fontSize: Utils.shared.fScale(20)),
-                      validator: (value) =>
-                          Utils.shared.validationCheck("password", value),
+                      validator: (value) => Utils.shared.validationCheck(
+                          name: Constants.emptyPassword,
+                          value: value,
+                          regex: Constants.passwordRegex),
+                    ),
+                  ),
+                  SizedBox(height: Utils.shared.percentPH(1)),
+                  SizedBox(
+                    height: Utils.shared.percentPH(6),
+                    child: TextFormField(
+                      decoration: const FormTextFieldDecoration(
+                        iconData: Icons.password_rounded,
+                        text: Constants.textConfirmPassword,
+                      ),
+                      obscureText: true,
+                      cursorColor: Colors.black,
+                      style: TextStyle(fontSize: Utils.shared.fScale(20)),
+                      validator: (value) => Utils.shared.validationCheck(
+                          name: Constants.confirmPassword,
+                          value: value,
+                          passwordText: conPasController.text),
                     ),
                   ),
                   SizedBox(height: Utils.shared.percentPH(1)),
@@ -98,13 +119,15 @@ class SignUpForm extends StatelessWidget {
                       onSaved: (value) => user.phoneNumber = value,
                       decoration: const FormTextFieldDecoration(
                         iconData: Icons.phone,
-                        text: "+94716948293",
+                        text: Constants.textPhoneNumber,
                       ),
                       cursorColor: Colors.black,
                       style: TextStyle(fontSize: Utils.shared.fScale(20)),
                       keyboardType: TextInputType.number,
-                      validator: (value) =>
-                          Utils.shared.validationCheck("phone number", value),
+                      validator: (value) => Utils.shared.validationCheck(
+                          name: Constants.emptyPhoneNumber,
+                          value: value,
+                          regex: Constants.phoneNumberRegex),
                     ),
                   ),
                   SizedBox(height: Utils.shared.percentPH(1)),
@@ -129,5 +152,11 @@ class SignUpForm extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    conPasController.dispose();
+    super.dispose();
   }
 }

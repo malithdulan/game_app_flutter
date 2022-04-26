@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:game_app/helper/enums.dart';
 import 'package:game_app/helper/extensions.dart';
 
 import 'package:game_app/helper/utils.dart';
@@ -9,6 +10,7 @@ import 'package:game_app/ui/global_widgets/form_container.dart';
 import 'package:game_app/ui/global_widgets/form_text_field_decoration.dart';
 import 'package:game_app/ui/global_widgets/loading_placeholder.dart';
 
+import '../../../../helper/constants.dart';
 import '../../../../repositories/models/auth_models/sign_in_user.dart';
 import '../blocs/sign_in_bloc/sign_in_bloc.dart';
 
@@ -30,7 +32,7 @@ class _SignInFormState extends State<SignInForm> {
       SignInUser user = SignInUser(
           email: emailController.text,
           password: passwordController.text,
-          accountType: "email");
+          accountType: ACCOUNT_TYPE.email.text);
       context.read<SignInBloc>().add(EmailSignIn(user: user));
     }
   }
@@ -56,12 +58,14 @@ class _SignInFormState extends State<SignInForm> {
                       controller: emailController,
                       decoration: const FormTextFieldDecoration(
                         iconData: Icons.account_circle_rounded,
-                        text: "Email",
+                        text: Constants.textEmail,
                       ),
                       cursorColor: Colors.black,
                       style: TextStyle(fontSize: Utils.shared.fScale(20)),
-                      validator: (value) =>
-                          Utils.shared.validationCheck("email", value),
+                      validator: (value) => Utils.shared.validationCheck(
+                          name: Constants.emptyEmail,
+                          value: value,
+                          regex: Constants.emailRegex),
                     ),
                   ),
                   SizedBox(height: Utils.shared.percentPH(1)),
@@ -71,13 +75,15 @@ class _SignInFormState extends State<SignInForm> {
                       controller: passwordController,
                       decoration: const FormTextFieldDecoration(
                         iconData: Icons.password_rounded,
-                        text: "Password",
+                        text: Constants.textPassword,
                       ),
                       obscureText: true,
                       cursorColor: Colors.black,
                       style: TextStyle(fontSize: Utils.shared.fScale(20)),
-                      validator: (value) =>
-                          Utils.shared.validationCheck("password", value),
+                      validator: (value) => Utils.shared.validationCheck(
+                          name: Constants.emptyPassword,
+                          value: value,
+                          regex: Constants.passwordRegex),
                     ),
                   ),
                   SizedBox(height: Utils.shared.percentPH(1)),

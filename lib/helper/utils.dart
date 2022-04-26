@@ -122,10 +122,27 @@ class Utils {
     ));
   }
 
-  String? validationCheck(String name, String? value) {
+  String? validationCheck(
+      {required String name,
+      String? value,
+      String? regex,
+      String? passwordText}) {
     if (value == null || value.isEmpty) {
-      return "Please enter $name";
+      return (name == Constants.confirmPassword)
+          ? "Please $name"
+          : "Please enter $name";
     }
+
+    //regex validation
+    if (regex != null && !RegExp(regex).hasMatch(value)) {
+      return "$name not valid";
+    }
+
+    //password and confirm password check
+    if (passwordText != null && passwordText != value) {
+      return Constants.passwordMissMatch;
+    }
+
     return null;
   }
 }
