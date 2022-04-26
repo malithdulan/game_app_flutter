@@ -181,4 +181,11 @@ class Utils {
       return false;
     }
   }
+
+  double keyboardHeightPercentage(BuildContext context) {
+    return ((MediaQuery.of(context).viewInsets.bottom /
+                MediaQuery.of(context).size.height) *
+            100) +
+        2;
+  }
 }

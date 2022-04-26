@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:game_app/helper/app_data.dart';
 import 'package:game_app/ui/global_widgets/auth_custom_painter.dart';
 import 'package:game_app/ui/pages/sign_in/widgets/forgot_text.dart';
@@ -24,11 +25,6 @@ class SignInLayout extends StatelessWidget {
                 painter: AuthCustomPainter(),
               ),
               Positioned(
-                left: 0,
-                top: Utils.shared.percentPH(48),
-                child: const SignInForm(),
-              ),
-              Positioned(
                 left: Utils.shared.percentW(7),
                 top: Utils.shared.percentPH(68),
                 child: const SocialSignIn(),
@@ -42,6 +38,18 @@ class SignInLayout extends StatelessWidget {
                 right: Utils.shared.percentW(20),
                 top: Utils.shared.percentPH(68),
                 child: const ForgotText(),
+              ),
+              KeyboardVisibilityBuilder(
+                builder: (context, isVisible) {
+                  double position = (isVisible)
+                      ? Utils.shared.keyboardHeightPercentage(context)
+                      : 42;
+                  return Positioned(
+                    left: 0,
+                    bottom: Utils.shared.percentPH(position),
+                    child: const SignInForm(),
+                  );
+                },
               ),
             ],
           )

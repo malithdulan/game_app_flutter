@@ -51,6 +51,7 @@ dev_dependencies:
   connectivity_plus: ^2.2.1
   flutter_secure_storage: ^5.0.2
   shared_preferences: ^2.0.13
+  flutter_keyboard_visibility: ^5.2.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
