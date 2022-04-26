@@ -8,10 +8,10 @@ class FormContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Utils.shared.percentW(75),
+      width: Utils.shared.percentW(85),
       padding: EdgeInsets.only(
         left: Utils.shared.percentW(7),
-        right: Utils.shared.percentW(10),
+        right: Utils.shared.percentW(15),
         top: Utils.shared.percentPH(1),
         bottom: Utils.shared.percentPH(1),
       ),

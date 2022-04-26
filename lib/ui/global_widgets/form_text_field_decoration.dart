@@ -25,4 +25,11 @@ class FormTextFieldDecoration extends InputDecoration {
 
   @override
   String? get hintText => text;
+
+  @override
+  bool? get isDense => true;
+
+  @override
+  EdgeInsetsGeometry? get contentPadding =>
+      const EdgeInsets.fromLTRB(5.0, 1.0, 5.0, 4.0);
 }

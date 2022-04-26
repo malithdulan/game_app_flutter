@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -6,12 +7,15 @@ import 'package:flutter/scheduler.dart';
 
 import 'package:game_app/helper/app_data.dart';
 import 'package:game_app/helper/constants.dart';
+import 'package:game_app/ui/pages/home/home_page.dart';
 
 import 'package:game_app/ui/pages/sign_in/sign_in_page.dart';
 import '../ui/pages/category_list/category_list_page.dart';
 import '../ui/pages/game_details/game_details_page.dart';
 
 import 'log.dart';
+import 'managers/date_time_manager.dart';
+import 'managers/secure_storage_manager.dart';
 
 class Utils {
   //singleton implementation
@@ -72,8 +76,12 @@ class Utils {
   MaterialPageRoute? onGenerateRoute(RouteSettings settings) {
     return MaterialPageRoute(
       builder: (context) {
-        AppData.shared.setDeviceValues(context); //set important app data
-        return const SignInPage(); //home page (tab bar page)
+        //set important app data
+        AppData.shared.setDeviceValues(context);
+        //if user valid (jwt is valid), show home else login
+        return (AppData.shared.isUserValid)
+            ? const HomePage()
+            : const SignInPage();
       },
       settings: settings,
     );
@@ -130,12 +138,12 @@ class Utils {
     if (value == null || value.isEmpty) {
       return (name == Constants.confirmPassword)
           ? "Please $name"
-          : "Please enter $name";
+          : "Please Enter $name";
     }
 
     //regex validation
     if (regex != null && !RegExp(regex).hasMatch(value)) {
-      return "$name not valid";
+      return "$name Not Valid";
     }
 
     //password and confirm password check
@@ -144,5 +152,33 @@ class Utils {
     }
 
     return null;
+  }
+
+  ///check whether the jwt is valid or not (EXPIRY)
+  Future<bool> get checkJWT async {
+    try {
+      String? jwt = await SecureStorage.shared.readSecureData(Constants.token);
+      if (jwt == null) return false;
+
+      Map<String, dynamic> payload = json.decode(
+          ascii.decode(base64.decode(base64.normalize(jwt.split(".")[1]))));
+
+      if (payload.containsKey("exp") && payload["exp"] != null) {
+        int expTimeStamp = payload["exp"] as int;
+        DateTime? expiryDate = CustomDate.shared
+            .dateFromTimeStamp(timeStamp: expTimeStamp * 1000000);
+        if (expiryDate == null) return false;
+        if (DateTime.now().compareTo(expiryDate) < 0) return true;
+      }
+
+      return false;
+    } catch (error, stackTrace) {
+      Log.shared.logError(
+          message: "JWT calculation error",
+          className: "Auth - checkJWT",
+          error: error.toString(),
+          stackTrace: stackTrace);
+      return false;
+    }
   }
 }

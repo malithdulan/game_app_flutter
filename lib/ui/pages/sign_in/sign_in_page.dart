@@ -10,6 +10,8 @@ import 'package:game_app/ui/pages/sign_in/blocs/sign_in_bloc/sign_in_bloc.dart';
 
 import 'package:game_app/ui/pages/sign_in/sign_in_layout.dart';
 
+import '../../../helper/app_data.dart';
+
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
 
@@ -33,6 +35,7 @@ class SignInPage extends StatelessWidget {
               previous.authState != current.authState,
           listener: (context, state) {
             if (state.authState.isValid) {
+              AppData.shared.setUserStatus(true);
               _pushToHomePage(context);
             } else if (state.authState.isInValid) {
               Utils.shared.showErrorToastMessage(context, state.errorMessage);

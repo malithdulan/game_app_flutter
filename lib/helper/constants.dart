@@ -54,11 +54,11 @@ class Constants {
   static const String userExists = "User already registered.";
 
   //validation messages
-  static const String emptyEmail = "email";
-  static const String emptyPassword = "password";
-  static const String confirmPassword = "confirm password";
-  static const String passwordMissMatch = "Password doesn't match";
-  static const String emptyPhoneNumber = "phone number";
+  static const String emptyEmail = "Email";
+  static const String emptyPassword = "Password";
+  static const String confirmPassword = "Confirm Password";
+  static const String passwordMissMatch = "Password Doesn't Match";
+  static const String emptyPhoneNumber = "Phone Number";
 
   //formField text messages
   static const String textEmail = "Email";
@@ -71,4 +71,10 @@ class Constants {
   static const phoneNumberRegex = '^(?:[+0]9)?[0-9]{10}\$';
   static const passwordRegex =
       '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@\$%^&*-]).{8,}\$';
+
+  //storage keys
+  static const token = "token"; //key store, key chain
+  static const name = "name"; //shared_preferences, user_defaults
+  static const email = "email"; //shared_preferences, user_defaults
+  static const phone = "phone"; //shared_preferences, user_defaults
 }

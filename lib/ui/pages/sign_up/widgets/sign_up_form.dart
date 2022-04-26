@@ -68,7 +68,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         iconData: Icons.email_rounded,
                         text: Constants.textEmail,
                       ),
-                      cursorColor: Colors.black,
+                      cursorColor: Colors.deepOrange,
                       style: TextStyle(fontSize: Utils.shared.fScale(20)),
                       validator: (value) => Utils.shared.validationCheck(
                           name: Constants.emptyEmail,
@@ -87,7 +87,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         text: Constants.textPassword,
                       ),
                       obscureText: true,
-                      cursorColor: Colors.black,
+                      cursorColor: Colors.deepOrange,
                       style: TextStyle(fontSize: Utils.shared.fScale(20)),
                       validator: (value) => Utils.shared.validationCheck(
                           name: Constants.emptyPassword,
@@ -104,7 +104,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         text: Constants.textConfirmPassword,
                       ),
                       obscureText: true,
-                      cursorColor: Colors.black,
+                      cursorColor: Colors.deepOrange,
                       style: TextStyle(fontSize: Utils.shared.fScale(20)),
                       validator: (value) => Utils.shared.validationCheck(
                           name: Constants.confirmPassword,
@@ -121,7 +121,7 @@ class _SignUpFormState extends State<SignUpForm> {
                         iconData: Icons.phone,
                         text: Constants.textPhoneNumber,
                       ),
-                      cursorColor: Colors.black,
+                      cursorColor: Colors.deepOrange,
                       style: TextStyle(fontSize: Utils.shared.fScale(20)),
                       keyboardType: TextInputType.number,
                       validator: (value) => Utils.shared.validationCheck(
@@ -136,7 +136,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
           Positioned(
-            right: Utils.shared.percentW(19),
+            right: Utils.shared.percentW(9),
             //(formContainer height 31 / 2) - half height of submit button
             top: (Utils.shared.percentPH(31) / 2) - Utils.shared.percentW(6),
             child: BlocBuilder<SignUpBloc, SignUpState>(

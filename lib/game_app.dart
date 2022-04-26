@@ -61,7 +61,7 @@ class _GameAppState extends State<GameApp> with WidgetsBindingObserver {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
     return MultiRepositoryProvider(
       //provide a single repository instance
       providers: [

@@ -32,4 +32,10 @@ class AppData {
 
     deviceSize = MediaQuery.of(context).size;
   }
+
+  //valid user, jwt is active
+  late bool isUserValid;
+  void setUserStatus(value) {
+    isUserValid = value;
+  }
 }

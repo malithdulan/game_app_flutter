@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_app/helper/enums.dart';
@@ -60,7 +61,7 @@ class _SignInFormState extends State<SignInForm> {
                         iconData: Icons.account_circle_rounded,
                         text: Constants.textEmail,
                       ),
-                      cursorColor: Colors.black,
+                      cursorColor: Colors.deepOrange,
                       style: TextStyle(fontSize: Utils.shared.fScale(20)),
                       validator: (value) => Utils.shared.validationCheck(
                           name: Constants.emptyEmail,
@@ -78,7 +79,7 @@ class _SignInFormState extends State<SignInForm> {
                         text: Constants.textPassword,
                       ),
                       obscureText: true,
-                      cursorColor: Colors.black,
+                      cursorColor: Colors.deepOrange,
                       style: TextStyle(fontSize: Utils.shared.fScale(20)),
                       validator: (value) => Utils.shared.validationCheck(
                           name: Constants.emptyPassword,
@@ -92,7 +93,7 @@ class _SignInFormState extends State<SignInForm> {
             ),
           ),
           Positioned(
-            right: Utils.shared.percentW(19),
+            right: Utils.shared.percentW(9),
             //(formContainer height 17 / 2) - half height of submit button
             top: (Utils.shared.percentPH(17) / 2) - Utils.shared.percentW(6),
             child: BlocBuilder<SignInBloc, SignInState>(

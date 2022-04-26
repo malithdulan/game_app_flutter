@@ -1,3 +1,5 @@
+import 'package:game_app/helper/managers/secure_storage_manager.dart';
+import 'package:game_app/helper/managers/shared_preference_manager.dart';
 import 'package:game_app/helper/network/network.dart';
 import 'package:game_app/helper/network/network_post_methods.dart';
 import 'package:game_app/helper/utils.dart';
@@ -34,7 +36,8 @@ class AuthRepository {
           Utils.shared.getJsonBody(data)?["data"] as Map<String, dynamic>?;
       String? token = resData?["token"] as String?;
       if (token != null) {
-        print(token); //save json token to storage
+        //save jwt token to key_store, key_chain
+        SecureStorage.shared.writeSecureData(Constants.token, token);
       }
     }
     return Future.value(code);
@@ -42,6 +45,15 @@ class AuthRepository {
 
   Future<int> signUpAccount(SignUpUser? user) async {
     Map<String, dynamic> data = await Net.shared.signUp(user);
-    return Future.value(_getStatusCode(data));
+    int? code = _getStatusCode(data);
+    if (code == StatusCodes.statusCodeCreated) {
+      //save user data to shared_preferences, user_defaults
+      SharedPreference.shared.setValue(key: Constants.name, value: user?.name);
+      SharedPreference.shared
+          .setValue(key: Constants.email, value: user?.email);
+      SharedPreference.shared
+          .setValue(key: Constants.phone, value: user?.phoneNumber);
+    }
+    return Future.value(code);
   }
 }

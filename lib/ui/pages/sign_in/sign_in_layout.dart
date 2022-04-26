@@ -15,35 +15,36 @@ class SignInLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MediaQuery.of(context).size.height;
-    return Stack(
-      fit: StackFit.loose,
-      children: [
-        CustomPaint(
-          size: AppData.shared.deviceSize,
-          painter: AuthCustomPainter(),
-        ),
-        Positioned(
-          left: 0,
-          top: Utils.shared.percentPH(48),
-          child: const SignInForm(),
-        ),
-        Positioned(
-          left: Utils.shared.percentW(7),
-          top: Utils.shared.percentPH(68),
-          child: const SocialSignIn(),
-        ),
-        Positioned(
-          left: Utils.shared.percentW(7),
-          top: Utils.shared.percentPH(83),
-          child: const RegisterText(),
-        ),
-        Positioned(
-          right: Utils.shared.percentW(20),
-          top: Utils.shared.percentPH(68),
-          child: const ForgotText(),
-        ),
-      ],
-    );
+    return (MediaQuery.of(context).size.height != 0)
+        ? Stack(
+            fit: StackFit.loose,
+            children: [
+              CustomPaint(
+                size: AppData.shared.deviceSize,
+                painter: AuthCustomPainter(),
+              ),
+              Positioned(
+                left: 0,
+                top: Utils.shared.percentPH(48),
+                child: const SignInForm(),
+              ),
+              Positioned(
+                left: Utils.shared.percentW(7),
+                top: Utils.shared.percentPH(68),
+                child: const SocialSignIn(),
+              ),
+              Positioned(
+                left: Utils.shared.percentW(7),
+                top: Utils.shared.percentPH(83),
+                child: const RegisterText(),
+              ),
+              Positioned(
+                right: Utils.shared.percentW(20),
+                top: Utils.shared.percentPH(68),
+                child: const ForgotText(),
+              ),
+            ],
+          )
+        : const SizedBox();
   }
 }
