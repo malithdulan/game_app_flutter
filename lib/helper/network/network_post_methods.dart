@@ -23,7 +23,6 @@ extension NetworkPostMethods on Net {
       headers: commonHeaders(),
       contentType: CONTENT_TYPE.jsonEncoded,
       paramData: user?.toJson(),
-      isLogEnable: true,
     );
   }
 }

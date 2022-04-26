@@ -6,7 +6,6 @@ import 'package:game_app/helper/extensions.dart';
 import 'package:game_app/helper/utils.dart';
 import 'package:game_app/ui/global_widgets/form_button.dart';
 import 'package:game_app/ui/global_widgets/form_container.dart';
-import 'package:game_app/ui/global_widgets/form_text_field.dart';
 import 'package:game_app/ui/global_widgets/form_text_field_decoration.dart';
 import 'package:game_app/ui/global_widgets/loading_placeholder.dart';
 
@@ -21,23 +20,19 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
-  late final TextEditingController emailController;
-  late final TextEditingController passwordController;
+  final _signInFormKey = GlobalKey<FormState>();
 
-  @override
-  void initState() {
-    emailController = TextEditingController();
-    passwordController = TextEditingController();
-    super.initState();
-  }
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   void _signIn(BuildContext context) {
-    context.read<SignInBloc>().add(EmailSignIn(
-            user: SignInUser(
+    if (_signInFormKey.currentState!.validate()) {
+      SignInUser user = SignInUser(
           email: emailController.text,
           password: passwordController.text,
-          accountType: "email",
-        )));
+          accountType: "email");
+      context.read<SignInBloc>().add(EmailSignIn(user: user));
+    }
   }
 
   @override
@@ -48,37 +43,52 @@ class _SignInFormState extends State<SignInForm> {
         clipBehavior: Clip.none,
         children: [
           FormContainer(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  height: Utils.shared.percentPH(6),
-                  child: FormTextField(
-                    fieldDecoration: const FormTextFieldDecoration(
-                      iconData: Icons.account_circle_rounded,
-                      text: "Email",
+            child: Form(
+              key: _signInFormKey,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(height: Utils.shared.percentPH(1)),
+                  SizedBox(
+                    height: Utils.shared.percentPH(6),
+                    child: TextFormField(
+                      controller: emailController,
+                      decoration: const FormTextFieldDecoration(
+                        iconData: Icons.account_circle_rounded,
+                        text: "Email",
+                      ),
+                      cursorColor: Colors.black,
+                      style: TextStyle(fontSize: Utils.shared.fScale(20)),
+                      validator: (value) =>
+                          Utils.shared.validationCheck("email", value),
                     ),
-                    textController: emailController,
                   ),
-                ),
-                SizedBox(
-                  height: Utils.shared.percentPH(6),
-                  child: FormTextField(
-                    isObscureText: true,
-                    fieldDecoration: const FormTextFieldDecoration(
-                      iconData: Icons.password_rounded,
-                      text: "Password",
+                  SizedBox(height: Utils.shared.percentPH(1)),
+                  SizedBox(
+                    height: Utils.shared.percentPH(6),
+                    child: TextFormField(
+                      controller: passwordController,
+                      decoration: const FormTextFieldDecoration(
+                        iconData: Icons.password_rounded,
+                        text: "Password",
+                      ),
+                      obscureText: true,
+                      cursorColor: Colors.black,
+                      style: TextStyle(fontSize: Utils.shared.fScale(20)),
+                      validator: (value) =>
+                          Utils.shared.validationCheck("password", value),
                     ),
-                    textController: passwordController,
                   ),
-                ),
-              ],
+                  SizedBox(height: Utils.shared.percentPH(1)),
+                ],
+              ),
             ),
           ),
           Positioned(
             right: Utils.shared.percentW(19),
-            //(formContainer height 14 / 2) - half height of submit button
-            top: (Utils.shared.percentPH(14) / 2) - Utils.shared.percentW(6),
+            //(formContainer height 17 / 2) - half height of submit button
+            top: (Utils.shared.percentPH(17) / 2) - Utils.shared.percentW(6),
             child: BlocBuilder<SignInBloc, SignInState>(
               buildWhen: (previous, current) =>
                   previous.authState != current.authState,

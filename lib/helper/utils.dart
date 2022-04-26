@@ -121,4 +121,11 @@ class Utils {
       backgroundColor: Colors.red,
     ));
   }
+
+  String? validationCheck(String name, String? value) {
+    if (value == null || value.isEmpty) {
+      return "Please enter $name";
+    }
+    return null;
+  }
 }

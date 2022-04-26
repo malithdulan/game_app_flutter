@@ -1,10 +1,10 @@
 class SignUpUser {
-  final String? name;
-  final String? email;
-  final String? password;
+  late String? name;
+  late String? email;
+  late String? password;
   final String? accountType;
   final String? deviceType;
-  final String? phoneNumber;
+  late String? phoneNumber;
 
   SignUpUser({
     required this.name,

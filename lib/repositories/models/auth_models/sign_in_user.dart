@@ -1,6 +1,6 @@
 class SignInUser {
-  final String? email;
-  final String? password;
+  late String? email;
+  late String? password;
   final String? accountType;
 
   SignInUser({
