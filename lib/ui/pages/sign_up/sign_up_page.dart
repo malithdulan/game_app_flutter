@@ -7,10 +7,19 @@ import 'package:game_app/ui/pages/sign_up/sign_up_layout.dart';
 
 import '../../../helper/utils.dart';
 import '../../../repositories/auth_repository.dart';
+import '../sign_in/sign_in_page.dart';
 import 'blocs/sign_up_bloc.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
+
+  _pushToLoginPage(BuildContext context) {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const SignInPage(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +33,7 @@ class SignUpPage extends StatelessWidget {
               previous.authState != current.authState,
           listener: (context, state) {
             if (state.authState.isValid) {
+              _pushToLoginPage(context);
             } else if (state.authState.isInValid) {
               Utils.shared.showErrorToastMessage(context, state.errorMessage);
             }
