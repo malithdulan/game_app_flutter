@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:game_app/helper/app_data.dart';
 import 'package:game_app/ui/global_widgets/auth_custom_painter.dart';
+import 'package:game_app/ui/global_widgets/form_header_title.dart';
 import 'package:game_app/ui/pages/sign_in/widgets/forgot_text.dart';
 import 'package:game_app/ui/pages/sign_in/widgets/register_text.dart';
 
@@ -23,6 +24,11 @@ class SignInLayout extends StatelessWidget {
               CustomPaint(
                 size: AppData.shared.deviceSize,
                 painter: AuthCustomPainter(),
+              ),
+              Positioned(
+                left: 0,
+                top: Utils.shared.percentPH(25),
+                child: const FormHeaderTitle(text: "Sign In"),
               ),
               Positioned(
                 left: Utils.shared.percentW(7),

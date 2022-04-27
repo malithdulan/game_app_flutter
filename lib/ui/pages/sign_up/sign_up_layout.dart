@@ -5,6 +5,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import '../../../helper/app_data.dart';
 import '../../../helper/utils.dart';
 import '../../global_widgets/auth_custom_painter.dart';
+import '../../global_widgets/form_header_title.dart';
 
 class SignUpLayout extends StatelessWidget {
   const SignUpLayout({Key? key}) : super(key: key);
@@ -16,6 +17,11 @@ class SignUpLayout extends StatelessWidget {
         CustomPaint(
           size: AppData.shared.deviceSize,
           painter: AuthCustomPainter(),
+        ),
+        Positioned(
+          left: 0,
+          top: Utils.shared.percentPH(25),
+          child: const FormHeaderTitle(text: "Sign Up"),
         ),
         Positioned(
           right: Utils.shared.percentW(20),
