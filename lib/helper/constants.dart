@@ -52,6 +52,16 @@ class Constants {
   static const String serverErrorMessage = "Ops! error in server side.";
   static const String wrongCredentials = "Wrong credentials.";
   static const String userExists = "User already registered.";
+  static const String googleAuthFail = "Google authentication filed!";
+  static const String facebookAuthFail = "Facebook authentication filed!";
+  static const String somethingWrong = "Ops! something went wrong";
+
+  //storage error messages
+  static const String userDataStorageError =
+      "Couldn't retrieve data from storage!";
+
+  //other errors
+  static const String appSettingsError = "Couldn't get app settings!";
 
   //validation messages
   static const String emptyEmail = "Email";
@@ -77,4 +87,9 @@ class Constants {
   static const name = "name"; //shared_preferences, user_defaults
   static const email = "email"; //shared_preferences, user_defaults
   static const phone = "phone"; //shared_preferences, user_defaults
+  static const accountType = "account_type"; //shared_preferences, user_defaults
+
+  //account types
+  static const google = "google";
+  static const facebook = "facebook";
 }

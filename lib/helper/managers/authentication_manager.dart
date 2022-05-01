@@ -11,7 +11,8 @@ class Auth {
 
   //google authentication
   final _googleSingIn = GoogleSignIn();
-  Future<GoogleSignInAccount?> signIn() => _googleSingIn.signIn();
+  Future<GoogleSignInAccount?> googleSignIn() => _googleSingIn.signIn();
+  Future<GoogleSignInAccount?> googleSignOut() => _googleSingIn.signOut();
 
   //facebook authentication
 }

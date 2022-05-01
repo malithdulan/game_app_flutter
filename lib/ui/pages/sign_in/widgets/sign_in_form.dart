@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_app/helper/enums.dart';
@@ -9,7 +8,6 @@ import 'package:game_app/helper/utils.dart';
 import 'package:game_app/ui/global_widgets/form_button.dart';
 import 'package:game_app/ui/global_widgets/form_container.dart';
 import 'package:game_app/ui/global_widgets/form_text_field_decoration.dart';
-import 'package:game_app/ui/global_widgets/loading_placeholder.dart';
 
 import '../../../../helper/constants.dart';
 import '../../../../repositories/models/auth_models/sign_in_user.dart';
@@ -96,14 +94,8 @@ class _SignInFormState extends State<SignInForm> {
             right: Utils.shared.percentW(9),
             //(formContainer height 17 / 2) - half height of submit button
             top: (Utils.shared.percentPH(17) / 2) - Utils.shared.percentW(6),
-            child: BlocBuilder<SignInBloc, SignInState>(
-              buildWhen: (previous, current) =>
-                  previous.authState != current.authState,
-              builder: (context, state) => state.authState.isLoading
-                  ? const LoadingPlaceholder()
-                  : FormButton(
-                      callback: () => _signIn(context),
-                    ),
+            child: FormButton(
+              callback: () => _signIn(context),
             ),
           ),
         ],

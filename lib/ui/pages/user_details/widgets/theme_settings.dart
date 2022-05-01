@@ -6,8 +6,8 @@ import 'package:game_app/helper/utils.dart';
 import 'package:game_app/ui/global_blocs/theme_bloc/theme_bloc.dart';
 import 'package:game_app/ui/global_widgets/common_layout_card.dart';
 
-class UserSettings extends StatelessWidget {
-  const UserSettings({Key? key}) : super(key: key);
+class ThemeSettings extends StatelessWidget {
+  const ThemeSettings({Key? key}) : super(key: key);
 
   void _switchTheme(BuildContext context, bool value) {
     context.read<ThemeBloc>().add(ChangeTheme(value: value));

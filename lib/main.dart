@@ -9,7 +9,6 @@ import 'game_app.dart';
 import 'helper/app_bloc_observer.dart';
 import 'package:game_app/helper/log.dart';
 
-import 'helper/constants.dart';
 import 'helper/utils.dart';
 
 void main() async {

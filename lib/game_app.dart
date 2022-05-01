@@ -4,9 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:game_app/helper/navigator_keys.dart';
 import 'package:game_app/helper/utils.dart';
 import 'package:game_app/repositories/auth_repository.dart';
 import 'package:game_app/repositories/game_repository.dart';
+import 'package:game_app/repositories/settings_repository.dart';
 import 'package:game_app/ui/global_blocs/theme_bloc/theme_bloc.dart';
 import 'package:game_app/ui/global_widgets/dismiss_keyboard.dart';
 
@@ -61,12 +63,13 @@ class _GameAppState extends State<GameApp> with WidgetsBindingObserver {
   }
 
   @override
-  Widget build(BuildContext context)  {
+  Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       //provide a single repository instance
       providers: [
         RepositoryProvider(create: (context) => GameRepository()),
         RepositoryProvider(create: (context) => AuthRepository()),
+        RepositoryProvider(create: (context) => SettingsRepository()),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) => DismissKeyboard(
@@ -77,6 +80,7 @@ class _GameAppState extends State<GameApp> with WidgetsBindingObserver {
             darkTheme: GameThemes.darkTheme,
             onGenerateRoute: (routeSettings) =>
                 Utils.shared.onGenerateRoute(routeSettings),
+            navigatorKey: NavigatorKeys.globalNavKey,
           ),
         ),
       ),

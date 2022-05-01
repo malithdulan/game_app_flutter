@@ -188,4 +188,32 @@ class Utils {
             100) +
         2;
   }
+
+  showConfirmDialog(BuildContext context, Function okCallback) {
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Sign Out"),
+          content: const Text("Do you want to Sign Out?"),
+          actions: [
+            TextButton(
+              child: const Text("Cancel",
+                  style: TextStyle(color: Colors.deepOrange)),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              style: Theme.of(context).textButtonTheme.style,
+            ),
+            TextButton(
+              child:
+                  const Text("Ok", style: TextStyle(color: Colors.deepOrange)),
+              onPressed: () => okCallback(),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

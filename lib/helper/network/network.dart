@@ -36,7 +36,7 @@ class Net {
       _encoding = Encoding.getByName('utf-8');
     }
 
-    //check intent connection
+    //check internet connection
     bool internetStatus = await ConnectivityManager.shared.checkInternet();
     if (!internetStatus) {
       //no internet

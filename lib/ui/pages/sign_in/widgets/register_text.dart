@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:game_app/ui/pages/sign_up/sign_up_page.dart';
 
+import '../../../../helper/navigator_keys.dart';
 import '../../../../helper/utils.dart';
 
 class RegisterText extends StatelessWidget {
@@ -9,7 +10,7 @@ class RegisterText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).pushReplacement(
+      onTap: () => NavigatorKeys.globalNavKey.currentState?.pushReplacement(
         MaterialPageRoute(
           builder: (context) => const SignUpPage(),
         ),

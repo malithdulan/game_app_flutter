@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:game_app/helper/enums.dart';
 import 'package:game_app/helper/extensions.dart';
+import 'package:game_app/helper/navigator_keys.dart';
 import 'package:game_app/helper/utils.dart';
 import 'package:game_app/repositories/auth_repository.dart';
 import 'package:game_app/ui/pages/home/home_page.dart';
@@ -16,7 +16,7 @@ class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
 
   _pushToHomePage(BuildContext context) {
-    Navigator.of(context).pushReplacement(
+    NavigatorKeys.globalNavKey.currentState?.pushReplacement(
       MaterialPageRoute(
         builder: (context) => const HomePage(),
       ),
@@ -38,6 +38,8 @@ class SignInPage extends StatelessWidget {
               AppData.shared.setUserStatus(true);
               _pushToHomePage(context);
             } else if (state.authState.isInValid) {
+              //dismiss keyboard
+              FocusManager.instance.primaryFocus?.unfocus();
               Utils.shared.showErrorToastMessage(context, state.errorMessage);
             }
           },

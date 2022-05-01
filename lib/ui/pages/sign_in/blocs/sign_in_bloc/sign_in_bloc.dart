@@ -21,10 +21,30 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   void _mapGoogleSignInEventToState(
       GoogleSignIn event, Emitter<SignInState> emit) async {
-    GoogleUser user = await repository.googleAuthentication();
-    print(user.googleSignInAuthentication?.accessToken);
-
-    emit(state.copyWith(state: AUTH_STATE.valid));
+    emit(state.copyWith(
+        state: AUTH_STATE.loading)); //authentication is in progress
+    try {
+      //google authentication
+      GoogleUser user = await repository.googleAuthentication();
+      if (user.googleSignInAuthentication?.accessToken != null) {
+        //authenticate with back-end
+        bool value = await repository.validateGoogleUser(
+            user.googleSignInAccount,
+            user.googleSignInAuthentication!.accessToken!);
+        (value)
+            ? emit(state.copyWith(state: AUTH_STATE.valid))
+            : emit(state.copyWith(
+                state: AUTH_STATE.inValid,
+                errorMessage: Constants.somethingWrong));
+      } else {
+        emit(state.copyWith(
+            state: AUTH_STATE.inValid, errorMessage: Constants.googleAuthFail));
+      }
+    } on NoInternetException catch (e) {
+      emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
+    } on NetworkException catch (e) {
+      emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
+    }
   }
 
   void _mapFacebookSignInEventToState(

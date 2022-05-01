@@ -5,6 +5,7 @@ import 'package:game_app/helper/extensions.dart';
 
 import 'package:game_app/ui/pages/sign_up/sign_up_layout.dart';
 
+import '../../../helper/navigator_keys.dart';
 import '../../../helper/utils.dart';
 import '../../../repositories/auth_repository.dart';
 import '../sign_in/sign_in_page.dart';
@@ -14,7 +15,7 @@ class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
   _pushToLoginPage(BuildContext context) {
-    Navigator.of(context).pushReplacement(
+    NavigatorKeys.globalNavKey.currentState?.pushReplacement(
       MaterialPageRoute(
         builder: (context) => const SignInPage(),
       ),
@@ -35,6 +36,8 @@ class SignUpPage extends StatelessWidget {
             if (state.authState.isValid) {
               _pushToLoginPage(context);
             } else if (state.authState.isInValid) {
+              //dismiss keyboard
+              FocusManager.instance.primaryFocus?.unfocus();
               Utils.shared.showErrorToastMessage(context, state.errorMessage);
             }
           },
