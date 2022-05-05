@@ -95,19 +95,14 @@ class AuthRepository {
 
   void _saveUserInfo(SignInUser? user, String token) {
     SecureStorage.shared.writeSecureData(Constants.token, token);
-    SharedPreference.shared
-        .setValue(key: Constants.accountType, value: user?.accountType);
     //save user data to shared_preferences, user_defaults
-    SharedPreference.shared
-        .setValue(key: Constants.name, value: user?.email?.split('@')[0] ?? "");
-    SharedPreference.shared.setValue(key: Constants.email, value: user?.email);
+    List<String> values = List.from([user?.accountType, user?.email?.split('@')[0] ?? "", user?.email]);
+    SharedPreference.shared.setValue(key: Constants.userValues, value: values);
   }
 
   void removeUserInfo() {
     SecureStorage.shared.deleteSecureData(Constants.token);
-    SharedPreference.shared.removeValue(key: Constants.accountType);
-    SharedPreference.shared.removeValue(key: Constants.name);
-    SharedPreference.shared.removeValue(key: Constants.email);
+    SharedPreference.shared.removeValue(key: Constants.userValues);
   }
 
   Future<int> signInAccount(SignInUser? user) async {
@@ -140,9 +135,10 @@ class AuthRepository {
     }
     try {
       //get the account type from storage
-      String? accountType = await SharedPreference.shared
-          .getValue(key: Constants.accountType) as String?;
-      switch (accountType) {
+      List<String>? userValues = await SharedPreference.shared
+          .getValue(key: Constants.userValues) as List<String>?;
+      //index 0 is accountType
+      switch (userValues?[0]) {
         case Constants.google:
           //google sign out
           await Auth.shared.googleSignOut();

@@ -7,14 +7,10 @@ import 'package:package_info_plus/package_info_plus.dart';
 class SettingsRepository {
   //get data from the shared preference or user defaults
   Future<UserData> getUserDatFromStorage() async {
-    String? name =
-        await SharedPreference.shared.getValue(key: Constants.name) as String?;
-    String? email =
-        await SharedPreference.shared.getValue(key: Constants.email) as String?;
-    String? accountType = await SharedPreference.shared
-        .getValue(key: Constants.accountType) as String?;
+    List<String>? userValues =
+        await SharedPreference.shared.getValue(key: Constants.userValues) as List<String>?;
     return Future.value(
-        UserData(name: name, email: email, accountType: accountType));
+        UserData(name: userValues?[1], email: userValues?[2], accountType: userValues?[0]));
   }
 
   Future<AppSettings> getSettings() async {

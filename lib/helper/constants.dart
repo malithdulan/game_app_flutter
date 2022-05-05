@@ -88,6 +88,7 @@ class Constants {
   static const email = "email"; //shared_preferences, user_defaults
   static const phone = "phone"; //shared_preferences, user_defaults
   static const accountType = "account_type"; //shared_preferences, user_defaults
+  static const userValues = "user_values"; //shared_preferences, user_defaults
 
   //account types
   static const google = "google";
