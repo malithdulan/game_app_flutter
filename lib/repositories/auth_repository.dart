@@ -1,3 +1,4 @@
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:game_app/helper/enums.dart';
 import 'package:game_app/helper/extensions.dart';
 import 'package:game_app/helper/managers/secure_storage_manager.dart';
@@ -5,6 +6,7 @@ import 'package:game_app/helper/managers/shared_preference_manager.dart';
 import 'package:game_app/helper/network/network.dart';
 import 'package:game_app/helper/network/network_post_methods.dart';
 import 'package:game_app/helper/utils.dart';
+import 'package:game_app/repositories/models/auth_models/facebook_user.dart';
 import 'package:game_app/repositories/models/auth_models/google_user.dart';
 import 'package:game_app/repositories/models/auth_models/sign_in_user.dart';
 import 'package:game_app/repositories/models/auth_models/sign_up_user.dart';
@@ -32,35 +34,53 @@ class AuthRepository {
       return Future.value(GoogleUser(
           googleSignInAccount: user,
           googleSignInAuthentication: userAuthentication));
+    } catch (error) {
+      throw NetworkException(Constants.networkErrorMessage);
+    }
+  }
+
+  Future<FacebookUser> facebookAuthentication() async {
+    bool internetStatus = await ConnectivityManager.shared.checkInternet();
+    if (!internetStatus) {
+      //no internet
+      throw NoInternetException(Constants.internetErrorMessage);
+    }
+    try {
+      final LoginResult result = await Auth.shared.facebookSignIn();
+      Map<String, dynamic>? userData;
+      if (result.status == LoginStatus.success) {
+        // you are logged in
+        userData = await Auth.shared.facebookUserData();
+      }
+      return Future.value(FacebookUser(loginResult: result, email: userData?["email"] as String?, id: userData?["id"]));
+
     } catch (_) {
       throw NetworkException(Constants.networkErrorMessage);
     }
   }
 
-  Future<bool> validateGoogleUser(
-      GoogleSignInAccount? user, String token) async {
+  Future<bool> validateUser(
+      String? email, String? password, ACCOUNT_TYPE type) async {
     //get the account type from storage
-    String? accountType = await SharedPreference.shared
-        .getValue(key: Constants.accountType) as String?;
-    String? userEmail =
-        await SharedPreference.shared.getValue(key: Constants.email) as String?;
+    List<String>? userData =
+    await SharedPreference.shared.getValue(key: Constants.userValues) as List<String>?;
 
-    if (accountType == Constants.google &&
-        userEmail != null &&
-        user?.email == userEmail) {
+    if (userData?[0] == type.name &&
+        userData?[2] != null &&
+        email == userData?[2]) {
       //previous signIn was with this account, just login and get token
       int code = await signInAccount(SignInUser(
-          email: user?.email, password: token, accountType: Constants.google));
+          email: email, password: password, accountType: type.name));
       if (code == StatusCodes.statusCodeRequestSuccess) {
         return Future.value(true);
       }
     } else {
       //check registration
       int code = await signUpAccount(SignUpUser(
-          name: user?.email.split('@')[0],
-          email: user?.email,
-          password: token,
-          accountType: Constants.google,
+          name: email?.split('@')[0],
+          email: email,
+          password: password,
+          accountType: type.name,
           deviceType: DEVICE_TYPE.mobile.text,
           phoneNumber: ""));
 
@@ -69,28 +89,15 @@ class AuthRepository {
           code == StatusCodes.statusCodeUnProcessableEntity) {
         //login and get token
         int code = await signInAccount(SignInUser(
-            email: user?.email,
-            password: token,
-            accountType: Constants.google));
+            email: email,
+            password: password,
+            accountType: type.name));
         if (code == StatusCodes.statusCodeRequestSuccess) {
           return Future.value(true);
         }
       }
     }
     return Future.value(false);
-  }
-
-  Future<String> facebookAuthentication() async {
-    bool internetStatus = await ConnectivityManager.shared.checkInternet();
-    if (!internetStatus) {
-      //no internet
-      throw NoInternetException(Constants.internetErrorMessage);
-    }
-    try {
-      return Future.value("Auth");
-    } catch (_) {
-      throw NetworkException(Constants.networkErrorMessage);
-    }
   }
 
   void _saveUserInfo(SignInUser? user, String token) {
@@ -145,6 +152,7 @@ class AuthRepository {
           return Future.value(true);
         case Constants.facebook:
           //facebook sign out
+          await Auth.shared.facebookSignOut();
           return Future.value(true);
         case Constants.email:
           //email sign out

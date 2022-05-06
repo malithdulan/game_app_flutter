@@ -9,7 +9,7 @@ import 'package:game_app/ui/pages/sign_in/widgets/forgot_text.dart';
 import 'package:game_app/ui/pages/sign_in/widgets/register_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:game_app/ui/pages/sign_in/widgets/sign_in_form.dart';
-import 'package:game_app/ui/pages/sign_in/widgets/social_sign_in.dart';
+import 'package:game_app/ui/pages/sign_in/widgets/social_sign_in/social_sign_in.dart';
 
 import '../../../helper/utils.dart';
 import '../../global_widgets/loading_placeholder.dart';

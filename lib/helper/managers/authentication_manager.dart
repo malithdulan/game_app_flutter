@@ -1,4 +1,5 @@
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class Auth {
   //singleton implementation
@@ -15,4 +16,7 @@ class Auth {
   Future<GoogleSignInAccount?> googleSignOut() => _googleSingIn.signOut();
 
   //facebook authentication
+  Future<LoginResult> facebookSignIn() => FacebookAuth.instance.login();
+  Future<Map<String, dynamic>> facebookUserData() => FacebookAuth.instance.getUserData();
+  Future<void> facebookSignOut() => FacebookAuth.instance.logOut();
 }

@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:game_app/repositories/auth_repository.dart';
+import 'package:game_app/repositories/models/auth_models/facebook_user.dart';
 import 'package:game_app/repositories/models/auth_models/google_user.dart';
 import 'package:game_app/repositories/models/auth_models/sign_in_user.dart';
 
@@ -28,9 +30,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       GoogleUser user = await repository.googleAuthentication();
       if (user.googleSignInAuthentication?.accessToken != null) {
         //authenticate with back-end
-        bool value = await repository.validateGoogleUser(
-            user.googleSignInAccount,
-            user.googleSignInAuthentication!.accessToken!);
+        bool value = await repository.validateUser(user.googleSignInAccount?.email, user.googleSignInAccount?.id, ACCOUNT_TYPE.google);
         (value)
             ? emit(state.copyWith(state: AUTH_STATE.valid))
             : emit(state.copyWith(
@@ -49,9 +49,28 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   void _mapFacebookSignInEventToState(
       FacebookSignIn event, Emitter<SignInState> emit) async {
-    String user = await repository.facebookAuthentication();
-    print(user);
-    emit(state.copyWith(state: AUTH_STATE.valid));
+    emit(state.copyWith(
+        state: AUTH_STATE.loading)); //authentication is in progress
+    try {
+      //facebook authentication
+      FacebookUser user = await repository.facebookAuthentication();
+      if (user.loginResult?.status == LoginStatus.success && user.loginResult?.accessToken != null) {
+        //authenticate with back-end
+        bool value = await repository.validateUser(user.email, user.id, ACCOUNT_TYPE.facebook);
+        (value)
+            ? emit(state.copyWith(state: AUTH_STATE.valid))
+            : emit(state.copyWith(
+            state: AUTH_STATE.inValid,
+            errorMessage: Constants.somethingWrong));
+      } else {
+        emit(state.copyWith(
+            state: AUTH_STATE.inValid, errorMessage: Constants.facebookAuthFail));
+      }
+    } on NoInternetException catch (e) {
+      emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
+    } on NetworkException catch (e) {
+      emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
+    }
   }
 
   void _mapEmailSignInEventToState(

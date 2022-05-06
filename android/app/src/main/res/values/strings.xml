@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">game app login</string>
+    <string name="facebook_app_id">483006763571305</string>
+    <string name="facebook_client_token">ce74a67b5a5d83a395082b73e55babce</string>
+    <string name="fb_login_protocol_scheme">fb483006763571305</string>
+</resources>
