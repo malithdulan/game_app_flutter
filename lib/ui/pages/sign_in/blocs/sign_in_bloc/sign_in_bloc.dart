@@ -44,6 +44,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
     } on NetworkException catch (e) {
       emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
+    } catch (e) {
+      emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: Constants.somethingWrong));
     }
   }
 
@@ -70,6 +72,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
     } on NetworkException catch (e) {
       emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
+    } catch (e) {
+      emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: Constants.somethingWrong));
     }
   }
 
@@ -92,6 +96,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
     } on NetworkException catch (e) {
       emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
+    } catch (e) {
+      emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: Constants.somethingWrong));
     }
   }
 }

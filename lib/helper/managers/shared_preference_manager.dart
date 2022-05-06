@@ -19,10 +19,10 @@ class SharedPreference {
   }
 
   ///get data from the persistent storage.
-  Future<Object?> getValue({required String key}) async {
+  Future<List<String>?> getValue({required String key}) async {
     try {
       final SharedPreferences? sp = await shared.prefs;
-      return sp?.get(key);
+      return sp?.getStringList(key);
     } catch (error, stackTrace) {
       Log.shared.logError(
           message: "Data persistent error",

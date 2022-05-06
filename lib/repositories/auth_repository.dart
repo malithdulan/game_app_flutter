@@ -63,7 +63,7 @@ class AuthRepository {
       String? email, String? password, ACCOUNT_TYPE type) async {
     //get the account type from storage
     List<String>? userData =
-    await SharedPreference.shared.getValue(key: Constants.userValues) as List<String>?;
+    await SharedPreference.shared.getValue(key: Constants.userValues);
 
     if (userData?[0] == type.name &&
         userData?[2] != null &&

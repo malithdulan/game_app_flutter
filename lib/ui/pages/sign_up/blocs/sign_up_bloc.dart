@@ -34,6 +34,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
     } on NetworkException catch (e) {
       emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: e.error));
+    } catch (e) {
+      emit(state.copyWith(state: AUTH_STATE.inValid, errorMessage: Constants.somethingWrong));
     }
   }
 }
