@@ -52,8 +52,8 @@ class Constants {
   static const String serverErrorMessage = "Ops! error in server side.";
   static const String wrongCredentials = "Wrong credentials.";
   static const String userExists = "User already registered.";
-  static const String googleAuthFail = "Google authentication filed!";
-  static const String facebookAuthFail = "Facebook authentication filed!";
+  static const String googleAuthFail = "Google authentication Error!";
+  static const String facebookAuthFail = "Facebook authentication Error!";
   static const String somethingWrong = "Ops! something went wrong";
 
   //storage error messages

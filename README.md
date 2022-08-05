@@ -6,3 +6,6 @@ Facebook test user
 
 Haven't configure the release for facebook and google.
 Haven't added the config for iOS, test the android app only.
+
+vercel hosting used to host node api
+github - malithdulan77 account

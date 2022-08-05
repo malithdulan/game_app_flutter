@@ -15,7 +15,7 @@ class NetConfig {
     return Uri(scheme: scheme, host: host, path: path, queryParameters: param);
   }
 
-  static const authHost = "auth-omega.vercel.app";
+  static const authHost = "auth-api-two.vercel.app";
   static const authApi = "/api/auth";
   static const String login = "$authApi/login";
   static const String register = "$authApi/register";
