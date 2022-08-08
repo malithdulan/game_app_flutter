@@ -29,7 +29,7 @@ class _GameAppState extends State<GameApp> with WidgetsBindingObserver {
   @override
   void initState() {
     _loggerSubscription();
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     themeStatus = Utils.shared.isDark;
     super.initState();
   }
@@ -74,6 +74,7 @@ class _GameAppState extends State<GameApp> with WidgetsBindingObserver {
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) => DismissKeyboard(
           child: MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Game App',
             themeMode: state.themeMode,
             theme: GameThemes.lightTheme,
@@ -90,7 +91,7 @@ class _GameAppState extends State<GameApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     logSubscription.cancel(); //cancel log subscription
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 }
